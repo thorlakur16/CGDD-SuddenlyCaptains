@@ -58,7 +58,7 @@ public class player_controller : MonoBehaviour {
             animator.SetBool("onLadder", false);
         }
 
-        animator.SetFloat("VertSpeed", vertical); //set vertical speed in animator
+        animator.SetFloat("VertSpeed", Mathf.Abs(vertical)); //set vertical speed in animator
 
         horizontal *= Time.deltaTime * speed; //calculate horizontal movement
         vertical *= Time.deltaTime * speed/2; //calculate vertical movement
@@ -94,7 +94,7 @@ public class player_controller : MonoBehaviour {
     {
         if (Input.GetButton("Fire2_P" + player_nr)) // the B button
         {
-            animator.SetTrigger("KillSwitch"); //to play death animation
+            //animator.SetTrigger("KillSwitch"); //to play death animation
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true); //play push terminal animation
