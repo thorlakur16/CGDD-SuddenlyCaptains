@@ -16,7 +16,7 @@ public class player_controller : MonoBehaviour {
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
-    private GameObject theShip;
+    private ship theShip;
     private booster_control theBooster;
     public float boosterX;
     public float boosterY;
@@ -26,7 +26,7 @@ public class player_controller : MonoBehaviour {
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = body.gravityScale;
-        theShip = GameObject.Find("Ship");
+        theShip = GameObject.FindObjectOfType<ship>();
         theBooster = FindObjectOfType<booster_control>();
         boosterX = 0;
         boosterY = 0;
@@ -81,24 +81,24 @@ public class player_controller : MonoBehaviour {
     {
         if (Input.GetButton("Fire1_P" + player_nr)) //the A button
         {
-            if (animator.GetBool("pushTerminal") != true)
+            if (this.animator.GetBool("pushTerminal") != true)
             {
-                animator.SetBool("pushTerminal", true);
+                this.animator.SetBool("pushTerminal", true);
             }
-            if (onTerminalLeft)
+            if (this.onTerminalLeft)
             { 
                 //theBooster.startBooster(-Time.deltaTime, 0, 0); //start booster
                 boosterX = -Time.deltaTime;
                 boosterY = 0;
             }
-            if (onTerminalRight)
+            else if (this.onTerminalRight)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
                 //theBooster.startBooster(Time.deltaTime, 0, 0); //start booster
                 boosterX = Time.deltaTime;
                 boosterY = 0;
             }
-            if (onTerminalUp)
+            else if (this.onTerminalUp)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
                 //theBooster.startBooster(0, Time.deltaTime, 0); //start booster
@@ -106,11 +106,11 @@ public class player_controller : MonoBehaviour {
                 boosterY = Time.deltaTime;
 
             }
-            if (onTerminalBooster)
+            if (this.onTerminalBooster)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
                 Debug.Log(boosterX + "---" + boosterY);
-                theBooster.startBooster(boosterX, boosterY, 0); //start booster
+                theShip.startBooster(boosterX, boosterY, 0); //start booster
             }
         }
         if (Input.GetButtonUp("Fire1_P" + player_nr) && animator.GetBool("pushTerminal") != false)

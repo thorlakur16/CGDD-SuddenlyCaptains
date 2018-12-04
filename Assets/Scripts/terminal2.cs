@@ -90,10 +90,6 @@ public class terminal2 : MonoBehaviour {
             player2.onTerminalUp = false;
             player2.onTerminalBooster = false;
         }
-        if (coll.gameObject.name == "Player2")
-        {
-            player2.onTerminal = false;
-        }
     }
 
 }
