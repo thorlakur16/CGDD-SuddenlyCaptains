@@ -13,17 +13,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hashCode: -931197154
   material: {fileID: 21616336943205334}
-  materialHashCode: 1843514581
+  materialHashCode: -1183942120
   fontAssetType: 1
   m_fontInfo:
     Name: Voyager
     PointSize: 66
-    Scale: 0
+    Scale: 1
     CharacterCount: 88
     LineHeight: 75.9375
     Baseline: 0
     Ascender: 60.875
-    CapHeight: 0
+    CapHeight: 46.1875
     Descender: -11.0625
     CenterLine: 0
     SuperscriptOffset: 60.875
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 4.8339844
     strikethrough: 18.113636
     strikethroughThickness: 4.8339844
-    TabWidth: 0
+    TabWidth: 290
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 29
+    height: 71.9375
     xOffset: 0
-    yOffset: 0
+    yOffset: 60.875
     xAdvance: 29
     scale: 1
   - id: 33
@@ -997,9 +997,9 @@ Material:
     - _Parallax: 0.02
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.9
+    - _ScaleRatioA: 0.8333333
     - _ScaleRatioB: 0.73125
-    - _ScaleRatioC: 0.36913177
+    - _ScaleRatioC: 0.34178868
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
