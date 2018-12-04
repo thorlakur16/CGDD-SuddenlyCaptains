@@ -30,12 +30,20 @@ public class terminal2 : MonoBehaviour {
         {
             player1.onTerminal = true;
         }
+        if (coll.gameObject.name == "Player2")
+        {
+            player2.onTerminal = true;
+        }
     }
     void OnTriggerExit2D(Collider2D coll)
     {
         if (coll.gameObject.name == "Player1")
         {
             player1.onTerminal = false;
+        }
+        if (coll.gameObject.name == "Player2")
+        {
+            player2.onTerminal = false;
         }
     }
 
