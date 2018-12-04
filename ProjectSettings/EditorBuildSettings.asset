@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menu.unity
+    guid: ee922a00b5d96fd4c8977aabb4c12107
+  - enabled: 0
+    path: Assets/Scenes/laki-shipbuilder.unity
+    guid: c657558e83054884d896bb90c4faa748
+  - enabled: 1
+    path: Assets/Scenes/hoddi-shipbuilder.unity
+    guid: c6c1f79eeb6b03040a225619bbe782d3
   m_configObjects: {}
