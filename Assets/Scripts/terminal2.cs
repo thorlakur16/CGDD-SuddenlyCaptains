@@ -68,6 +68,7 @@ public class terminal2 : MonoBehaviour {
             {
                 player2.onTerminalBooster = true;
             }
+
             player2.onTerminal = true;
         }
     }
@@ -88,6 +89,10 @@ public class terminal2 : MonoBehaviour {
             player2.onTerminalRight = false;
             player2.onTerminalUp = false;
             player2.onTerminalBooster = false;
+        }
+        if (coll.gameObject.name == "Player2")
+        {
+            player2.onTerminal = false;
         }
     }
 
