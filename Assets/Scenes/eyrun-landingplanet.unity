@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49524afd244928f4baf1c3691484eb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!61 &180034717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1230,6 +1232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49524afd244928f4baf1c3691484eb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!1001 &1490097695
 Prefab:
   m_ObjectHideFlags: 0
@@ -1558,8 +1562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d876a307201fe4889fc50ab68ec9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosterOn: 0
-  animator: {fileID: 1879206322}
 --- !u!212 &1879206321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1695,6 +1697,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   theLandingSpot: {fileID: 1272798334}
+  boosterOn: 0
 --- !u!50 &1997884854
 Rigidbody2D:
   serializedVersion: 4
@@ -1758,6 +1761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49524afd244928f4baf1c3691484eb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!61 &2025309170
 BoxCollider2D:
   m_ObjectHideFlags: 0
