@@ -25,6 +25,7 @@ public class ShipHandler : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+
         mainThrusterIsOn = false;
         x = 0;
         speed = 2;
