@@ -9,21 +9,16 @@ public class ship : MonoBehaviour {
     public Transform groundCheckPoint;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
-
-    private booster_control theBooster;
-    private float distanceToGround;
-    private GameObject theLandingSpot;
+    public GameObject theLandingSpot;
 
     private Rigidbody2D theRB;
-
+    private float distanceToGround;
     private float xPosOfLandingPlatform;
 
     // Use this for initialization
     void Start ()
     {
         theRB = GetComponent<Rigidbody2D>();
-        theBooster = FindObjectOfType<booster_control>();
-        theLandingSpot = GameObject.FindGameObjectWithTag("Planet");
         xPosOfLandingPlatform = Random.Range(-25, 25);
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
         theLandingSpot.transform.position = pos;
@@ -38,9 +33,10 @@ public class ship : MonoBehaviour {
         if (!hasLanded)
         {
             theRB.transform.Translate(0, -Time.deltaTime * moveSpeed, 0);
-        } else if (distanceToGround < 10 && theRB.velocity.y > 5)
+        }
+        else if (distanceToGround < 10 && theRB.velocity.y > 5)
         {
-            theRB.transform.Translate(Time.deltaTime, 0, 0);
+            //Do something, like explode the ship, if players are landing too harsly
         }
     }
 }
