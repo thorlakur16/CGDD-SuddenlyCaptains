@@ -17,10 +17,13 @@ public class ship : MonoBehaviour {
     private Rigidbody2D theRB;
 
     private float xPosOfLandingPlatform;
+    public bool boosterOn = false;
+    private GameObject theShip;
 
     // Use this for initialization
     void Start ()
     {
+        theShip = GameObject.Find("Ship");
         theRB = GetComponent<Rigidbody2D>();
         theBooster = FindObjectOfType<booster_control>();
         theLandingSpot = GameObject.FindGameObjectWithTag("Planet");
@@ -42,5 +45,24 @@ public class ship : MonoBehaviour {
         {
             theRB.transform.Translate(Time.deltaTime, 0, 0);
         }
+        theBooster = FindObjectOfType<booster_control>();
+        foreach (booster_control booster in GameObject.FindObjectsOfType(typeof(booster_control)))
+        {
+            if (booster.name == "TerminalUp")
+            {
+                theBooster = booster;
+            }
+        }
+
+    }
+    public void startBooster(float x, float z, float y)
+    {
+        boosterOn = true;
+        theShip.transform.Translate(x, y, z); //move ship
+    }
+    public void shutdownBooster()
+    {
+        Debug.Log("boosterOff in booster");
+        boosterOn = false;
     }
 }

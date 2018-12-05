@@ -16,7 +16,7 @@ public class player_controller : MonoBehaviour {
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
-    private GameObject theShip;
+    private ship theShip;
     private booster_control theBooster;
 
     private bool alive = true;
@@ -29,7 +29,7 @@ public class player_controller : MonoBehaviour {
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = body.gravityScale;
-        theShip = GameObject.Find("Ship");
+        theShip = GameObject.FindObjectOfType<ship>();
         theBooster = FindObjectOfType<booster_control>();
         boosterX = 0;
         boosterY = 0;
@@ -89,44 +89,17 @@ public class player_controller : MonoBehaviour {
 
     private void DoFire1Things()
     {
-        if (Input.GetButton("Fire1_P" + player_nr) //the A button   Input.GetButton("Fire1") fyrir keyboard control
+        if (Input.GetButton("Fire1_P" + player_nr)) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
-            if (animator.GetBool("pushTerminal") != true)
+            if (this.animator.GetBool("pushTerminal") != true)
             {
-                animator.SetBool("pushTerminal", true);
+                this.animator.SetBool("pushTerminal", true);
             }
-            if (onTerminalLeft)
-            { 
-                //theBooster.startBooster(-Time.deltaTime, 0, 0); //start booster
-                //boosterX = -Time.deltaTime;
-                //boosterY = 0;
-            }
-            if (onTerminalRight)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //theBooster.startBooster(Time.deltaTime, 0, 0); //start booster
-                //boosterX = Time.deltaTime;
-                //boosterY = 0;
-            }
-            if (onTerminalUp)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //theBooster.startBooster(0, Time.deltaTime, 0); //start booster
-                //boosterX = 0;
-                //boosterY = Time.deltaTime;
 
-            }
-            if (onTerminalBooster)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //Debug.Log(boosterX + "---" + boosterY);
-                //theBooster.startBooster(boosterX, boosterY, 0); //start booster
-            }
         }
-        if ((Input.GetButtonUp("Fire1_P" + player_nr) || Input.GetButtonUp("Fire1")) && animator.GetBool("pushTerminal") != false)
+        if (Input.GetButtonUp("Fire1_P" + player_nr) && animator.GetBool("pushTerminal") != false)
         {
-            animator.SetBool("pushTerminal", false); //play push terminal animation
-            //theBooster.shutdownBooster(); //shutdown booster
+            animator.SetBool("pushTerminal", false); //stop playing push terminal animation
         }
     }
 
@@ -138,10 +111,6 @@ public class player_controller : MonoBehaviour {
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true); //play push terminal animation
-            }
-            if (onTerminal)
-            {
-                theShip.transform.Translate(0, -Time.deltaTime, 0); //move ship
             }
         }
         if (Input.GetButtonUp("Fire2_P" + player_nr) && animator.GetBool("pushTerminal") != false)
