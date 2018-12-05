@@ -95,39 +95,11 @@ public class player_controller : MonoBehaviour {
             {
                 this.animator.SetBool("pushTerminal", true);
             }
-            if (this.onTerminalLeft)
-            { 
-                //theBooster.startBooster(-Time.deltaTime, 0, 0); //start booster
-                //boosterX = -Time.deltaTime;
-                //boosterY = 0;
-            }
-            else if (this.onTerminalRight)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //theBooster.startBooster(Time.deltaTime, 0, 0); //start booster
-                //boosterX = Time.deltaTime;
-                //boosterY = 0;
-            }
-            else if (this.onTerminalUp)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //theBooster.startBooster(0, Time.deltaTime, 0); //start booster
-                //boosterX = 0;
-                //boosterY = Time.deltaTime;
 
-            }
-            if (this.onTerminalBooster)
-            {
-                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                //Debug.Log(boosterX + "---" + boosterY);
-                //theBooster.startBooster(boosterX, boosterY, 0); //start booster
-
-            }
         }
-        if ((Input.GetButtonUp("Fire1_P" + player_nr) || Input.GetButtonUp("Fire1")) && animator.GetBool("pushTerminal") != false)
+        if (Input.GetButtonUp("Fire1_P" + player_nr) && animator.GetBool("pushTerminal") != false)
         {
-            animator.SetBool("pushTerminal", false); //play push terminal animation
-            //theBooster.shutdownBooster(); //shutdown booster
+            animator.SetBool("pushTerminal", false); //stop playing push terminal animation
         }
     }
 
@@ -139,10 +111,6 @@ public class player_controller : MonoBehaviour {
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true); //play push terminal animation
-            }
-            if (onTerminal)
-            {
-                theShip.transform.Translate(0, -Time.deltaTime, 0); //move ship
             }
         }
         if (Input.GetButtonUp("Fire2_P" + player_nr) && animator.GetBool("pushTerminal") != false)
