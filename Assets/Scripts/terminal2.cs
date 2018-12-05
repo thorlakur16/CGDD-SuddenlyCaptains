@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class terminal2 : MonoBehaviour {
+public class terminal2 : MonoBehaviour
+{
 
     public player_controller player1;
     public player_controller player2;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
 
     }
@@ -34,7 +36,7 @@ public class terminal2 : MonoBehaviour {
             {
                 player1.onTerminalBooster = true;
             }
-            if(name == "TerminalLandingGear")
+            if (name == "TerminalLandingGear")
             {
                 player1.onTerminalLandingGear = true;
             }
