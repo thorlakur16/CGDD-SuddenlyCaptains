@@ -18,6 +18,9 @@ public class player_controller : MonoBehaviour {
     private float gravityScale;
     private GameObject theShip;
     private booster_control theBooster;
+
+    private bool alive = true;
+
     public float boosterX;
     public float boosterY;
 
@@ -33,53 +36,60 @@ public class player_controller : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-
-        float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
-        //theShip.transform.Translate(0, -Time.deltaTime, 0);
-        DoFire1Things();
-        DoFire2Things();
-
-        animator.SetFloat("Speed", Mathf.Abs(horizontal));
-
-        if(onTerminal == true && animator.GetBool("onTerminal") != true)
-        {
-            animator.SetBool("onTerminal", true); //play animation onTerminal idle
-        }
-        if(onTerminal == false && animator.GetBool("onTerminal") != false)
-        {
-            animator.SetBool("onTerminal", false); //stop playing animation onTerminal idle
-        }
         
-        float vertical = 0;
-        if (onLadder)
+        if (alive)
         {
-            body.gravityScale = 0f; //set gravity to 0
-            vertical = Input.GetAxis("Vertical_P" + player_nr); //get vertical movement
-            if(animator.GetBool("onLadder") != true)
+            float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
+            //float horizontal = Input.GetAxis("Horizontal"); //horizontal movement with keyboard
+            DoFire1Things();
+            DoFire2Things();
+
+
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
+
+            if (onTerminal == true && animator.GetBool("onTerminal") != true)
             {
-                animator.SetBool("onLadder", true); //play onLadder animation
+                animator.SetBool("onTerminal", true); //play animation onTerminal idle
             }
-        }
-        if(!onLadder && animator.GetBool("onLadder") != false)
-        {
-            body.gravityScale = gravityScale; //reset gravity
-            animator.SetBool("onLadder", false);
-        }
+            if (onTerminal == false && animator.GetBool("onTerminal") != false)
+            {
+                animator.SetBool("onTerminal", false); //stop playing animation onTerminal idle
+            }
 
-        animator.SetFloat("VertSpeed", Mathf.Abs(vertical)); //set vertical speed in animator
+            float vertical = 0;
+            if (onLadder)
+            {
+                body.gravityScale = 0f; //set gravity to 0
+                vertical = Input.GetAxis("Vertical_P" + player_nr); //get vertical movement
+                //vertical = Input.GetAxis("Vertical"); //get vertical movement with keyboard
 
-        horizontal *= Time.deltaTime * speed; //calculate horizontal movement
-        vertical *= Time.deltaTime * speed/2; //calculate vertical movement
+                if (animator.GetBool("onLadder") != true)
+                {
+                    animator.SetBool("onLadder", true); //play onLadder animation
+                }
+            }
+            if (!onLadder && animator.GetBool("onLadder") != false)
+            {
+                body.gravityScale = gravityScale; //reset gravity
+                animator.SetBool("onLadder", false);
+            }
+
+            animator.SetFloat("VertSpeed", Mathf.Abs(vertical)); //set vertical speed in animator
+
+            horizontal *= Time.deltaTime * speed; //calculate horizontal movement
+            vertical *= Time.deltaTime * speed; //calculate vertical movement
+
+            DoAFlip(horizontal);
+
+            transform.Translate(horizontal, vertical, 0); //move the player
+        }
         
-        DoAFlip(horizontal);
-
-        transform.Translate(horizontal, vertical, 0); //move the player
 		
 	}
 
     private void DoFire1Things()
     {
-        if (Input.GetButton("Fire1_P" + player_nr)) //the A button
+        if (Input.GetButton("Fire1_P" + player_nr) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
             if (animator.GetBool("pushTerminal") != true)
             {
@@ -88,32 +98,32 @@ public class player_controller : MonoBehaviour {
             if (onTerminalLeft)
             { 
                 //theBooster.startBooster(-Time.deltaTime, 0, 0); //start booster
-                boosterX = -Time.deltaTime;
-                boosterY = 0;
+                //boosterX = -Time.deltaTime;
+                //boosterY = 0;
             }
             if (onTerminalRight)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
                 //theBooster.startBooster(Time.deltaTime, 0, 0); //start booster
-                boosterX = Time.deltaTime;
-                boosterY = 0;
+                //boosterX = Time.deltaTime;
+                //boosterY = 0;
             }
             if (onTerminalUp)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
                 //theBooster.startBooster(0, Time.deltaTime, 0); //start booster
-                boosterX = 0;
-                boosterY = Time.deltaTime;
+                //boosterX = 0;
+                //boosterY = Time.deltaTime;
 
             }
             if (onTerminalBooster)
             {
                 //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                Debug.Log(boosterX + "---" + boosterY);
-                theBooster.startBooster(boosterX, boosterY, 0); //start booster
+                //Debug.Log(boosterX + "---" + boosterY);
+                //theBooster.startBooster(boosterX, boosterY, 0); //start booster
             }
         }
-        if (Input.GetButtonUp("Fire1_P" + player_nr) && animator.GetBool("pushTerminal") != false)
+        if ((Input.GetButtonUp("Fire1_P" + player_nr) || Input.GetButtonUp("Fire1")) && animator.GetBool("pushTerminal") != false)
         {
             animator.SetBool("pushTerminal", false); //play push terminal animation
             //theBooster.shutdownBooster(); //shutdown booster
@@ -124,7 +134,7 @@ public class player_controller : MonoBehaviour {
     {
         if (Input.GetButton("Fire2_P" + player_nr)) // the B button
         {
-            animator.SetTrigger("KillSwitch"); //to play death animation
+            //animator.SetTrigger("KillSwitch"); //to play death animation
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true); //play push terminal animation
@@ -151,5 +161,10 @@ public class player_controller : MonoBehaviour {
         {
             transform.localScale = new Vector3(-size, transform.localScale.y, transform.localScale.z);
         }
+    }
+
+    public void KillPlayer()
+    {
+        alive = false;
     }
 }
