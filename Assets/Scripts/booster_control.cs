@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class booster_control : MonoBehaviour {
 
-    public bool boosterOn = false;
-    private GameObject theShip;
-
-    public Animator animator;
 
     // Use this for initialization
     void Start () {
-        theShip = GameObject.Find("Ship");
+
     }
 	
 	// Update is called once per frame
@@ -49,20 +45,6 @@ public class booster_control : MonoBehaviour {
         }
 
     }*/
-    public void startBooster(float x, float z, float y)
-    {
-        boosterOn = true;
-        theShip.transform.Translate(x,y,z); //move ship
-        if (animator.GetBool("active") != true)
-        {
-            animator.SetBool("active", true);
-        }
 
-    }
-    public void shutdownBooster()
-    {
-        Debug.Log("boosterOff in booster");
-        boosterOn = false;
-        animator.SetBool("active", false);
-    }
+
 }

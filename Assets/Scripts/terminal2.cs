@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class terminal2 : MonoBehaviour {
 
-    private player_controller player1;
-    private player_controller player2;
+    public player_controller player1;
+    public player_controller player2;
 
 
 	// Use this for initialization
 	void Start () {
-        foreach (terminal2 terminal in GameObject.FindObjectsOfType(typeof(terminal2)))
-        {
-            //Debug.Log(terminal);
-        }
-        foreach (player_controller player in GameObject.FindObjectsOfType(typeof(player_controller)))
-        {
-            if(player.name == "Player1")
-            {
-                player1 = player;
-            }
-            else if(player.name == "Player2")
-            {
-                player2 = player;
-            }
-        }
+
 
     }
 
@@ -40,11 +26,11 @@ public class terminal2 : MonoBehaviour {
             {
                 player1.onTerminalRight = true;
             }
-            if (name == "TerminalUp")
+            if (name == "TerminalMain")
             {
                 player1.onTerminalUp = true;
             }
-            if (name == "TerminalBoost")
+            if (name == "TerminalBooster")
             {
                 player1.onTerminalBooster = true;
             }
@@ -60,11 +46,11 @@ public class terminal2 : MonoBehaviour {
             {
                 player2.onTerminalRight = true;
             }
-            if (name == "TerminalUp")
+            if (name == "TerminalMain")
             {
                 player2.onTerminalUp = true;
             }
-            if (name == "TerminalBoost")
+            if (name == "TerminalBooster")
             {
                 player2.onTerminalBooster = true;
             }
@@ -89,10 +75,6 @@ public class terminal2 : MonoBehaviour {
             player2.onTerminalRight = false;
             player2.onTerminalUp = false;
             player2.onTerminalBooster = false;
-        }
-        if (coll.gameObject.name == "Player2")
-        {
-            player2.onTerminal = false;
         }
     }
 
