@@ -8,17 +8,20 @@ public class ShipHandler : MonoBehaviour {
     public GameObject boosterLeft;
     public GameObject mainThruster;
     public GameObject theShip;
-    //public GameObject theLandingSpot;
 
-    //public Transform groundCheckPoint;
-    //public float groundCheckRadius;
-    //public LayerMask whatIsGround;
+    public GameObject theLandingSpot;
+    public GameObject completeText;
+    public GameObject dieText;
+
+    public Transform groundCheckPoint;
+    public float groundCheckRadius;
+    public LayerMask whatIsGround;
     public float speed;
 
     public bool hasLanded;
     //private Rigidbody2D theRB;
-    //private float distanceToGround;
-    //private float xPosOfLandingPlatform;
+    private float distanceToGround;
+    private float xPosOfLandingPlatform;
     private bool mainThrusterIsOn;
     private float x;
     
@@ -28,28 +31,46 @@ public class ShipHandler : MonoBehaviour {
         hasLanded = false;
         mainThrusterIsOn = false;
         x = 0;
-        speed = 2;
+        //speed = 2;
 
         //theRB = GetComponent<Rigidbody2D>();
-        //xPosOfLandingPlatform = Random.Range(-25, 25); //Getting the random x place for the landing platform
-        //Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
-        //theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
+
+        xPosOfLandingPlatform = Random.Range(-25, 25); //Getting the random x place for the landing platform
+        Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
+        theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         //For ship landing!
         //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        /*distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
+
+        //distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
+        
+        hasLanded = theLandingSpot.transform.position.y + 3.2 >= groundCheckPoint.position.y;
+
         if (!hasLanded)
         {
             transform.Translate(0, -Time.deltaTime * speed, 0);
         }
-        else if (distanceToGround < 10) //and speed to fast
+        if (distanceToGround < 10) //and speed to fast
         {
             //Do something, like explode the ship, if players are landing too harsly
-        }*/
+        }
+        if (hasLanded)
+        {
+            if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3))
+            {
+                completeText.SetActive(true);
+                Debug.Log("You are safe, Congratz");
+            }
+            else
+            {
+                dieText.SetActive(true);
+            }
+        }
     }
     public void MainThrusterOn()
     {

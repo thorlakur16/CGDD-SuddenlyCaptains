@@ -113,6 +113,113 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &385326849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385326853}
+  - component: {fileID: 385326852}
+  - component: {fileID: 385326851}
+  - component: {fileID: 385326850}
+  m_Layer: 0
+  m_Name: LandingGearLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &385326850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385326849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f889965bfa024944a1394d02a1b08e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 385326851}
+--- !u!95 &385326851
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385326849}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5106141047b472d46b47fd35cba1a03f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &385326852
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385326849}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c4938e9c00b1ce84f82abdfe920b27cc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &385326853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385326849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2439, y: -2.99905, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &504741127
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +341,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -285,8 +392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7a56e598d79b94ba67190261478d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thePlayer1: {fileID: 845116494}
+  thePlayer2: {fileID: 705970455}
   landingGear1: {fileID: 1264024678}
-  landingGear2: {fileID: 0}
+  landingGear2: {fileID: 385326850}
 --- !u!114 &845116494 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114533828747968374, guid: 472266cc3d1649a41ae4ed391c9a6c9d,
@@ -305,7 +414,7 @@ GameObject:
   - component: {fileID: 1264024679}
   - component: {fileID: 1264024678}
   m_Layer: 0
-  m_Name: LandingGear
+  m_Name: LandingGearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f889965bfa024944a1394d02a1b08e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1264024679}
 --- !u!95 &1264024679
 Animator:
   serializedVersion: 3
@@ -484,11 +594,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4133036430976094, guid: 7e3c8ba88ad1c8848a4575a01d6d3a90, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.11
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 4133036430976094, guid: 7e3c8ba88ad1c8848a4575a01d6d3a90, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.55
+      value: -5.13
       objectReference: {fileID: 0}
     - target: {fileID: 4133036430976094, guid: 7e3c8ba88ad1c8848a4575a01d6d3a90, type: 2}
       propertyPath: m_LocalPosition.z
