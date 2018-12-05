@@ -89,7 +89,7 @@ public class player_controller : MonoBehaviour {
 
     private void DoFire1Things()
     {
-        if (Input.GetButton("Fire1_P" + player_nr) //the A button   Input.GetButton("Fire1") fyrir keyboard control
+        if (Input.GetButton("Fire1_P" + player_nr)) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
             if (animator.GetBool("pushTerminal") != true)
             {
@@ -134,7 +134,7 @@ public class player_controller : MonoBehaviour {
     {
         if (Input.GetButton("Fire2_P" + player_nr)) // the B button
         {
-            //animator.SetTrigger("KillSwitch"); //to play death animation
+            
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true); //play push terminal animation
@@ -166,5 +166,6 @@ public class player_controller : MonoBehaviour {
     public void KillPlayer()
     {
         alive = false;
+        animator.SetTrigger("KillSwitch"); //to play death animation
     }
 }
