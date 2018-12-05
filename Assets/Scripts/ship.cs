@@ -14,10 +14,13 @@ public class ship : MonoBehaviour {
     private Rigidbody2D theRB;
     private float distanceToGround;
     private float xPosOfLandingPlatform;
+    public bool boosterOn = false;
+    private GameObject theShip;
 
     // Use this for initialization
     void Start ()
     {
+        theShip = GameObject.Find("Ship");
         theRB = GetComponent<Rigidbody2D>();
         xPosOfLandingPlatform = Random.Range(-25, 25);
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
@@ -38,5 +41,24 @@ public class ship : MonoBehaviour {
         {
             //Do something, like explode the ship, if players are landing too harsly
         }
+        theBooster = FindObjectOfType<booster_control>();
+        foreach (booster_control booster in GameObject.FindObjectsOfType(typeof(booster_control)))
+        {
+            if (booster.name == "TerminalUp")
+            {
+                theBooster = booster;
+            }
+        }
+
+    }
+    public void startBooster(float x, float z, float y)
+    {
+        boosterOn = true;
+        theShip.transform.Translate(x, y, z); //move ship
+    }
+    public void shutdownBooster()
+    {
+        Debug.Log("boosterOff in booster");
+        boosterOn = false;
     }
 }
