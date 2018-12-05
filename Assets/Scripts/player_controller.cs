@@ -9,12 +9,20 @@ public class player_controller : MonoBehaviour {
     private Rigidbody2D body;
     public float speed;
     public bool onTerminal = false;
+    public bool onTerminalLeft = false;
+    public bool onTerminalRight = false;
+    public bool onTerminalUp = false;
+    public bool onTerminalBooster = false;
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
     private GameObject theShip;
     private booster_control theBooster;
+
     private bool alive = true;
+
+    public float boosterX;
+    public float boosterY;
 
     // Use this for initialization
     void Start () {
@@ -23,16 +31,19 @@ public class player_controller : MonoBehaviour {
         gravityScale = body.gravityScale;
         theShip = GameObject.Find("Ship");
         theBooster = FindObjectOfType<booster_control>();
+        boosterX = 0;
+        boosterY = 0;
     }
 	// Update is called once per frame
 	void Update () {
-
+        
         if (alive)
         {
-            //float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
-            float horizontal = Input.GetAxis("Horizontal"); //horizontal movement with keyboard
+            float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
+            //float horizontal = Input.GetAxis("Horizontal"); //horizontal movement with keyboard
             DoFire1Things();
             DoFire2Things();
+
 
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
@@ -49,8 +60,8 @@ public class player_controller : MonoBehaviour {
             if (onLadder)
             {
                 body.gravityScale = 0f; //set gravity to 0
-                //vertical = Input.GetAxis("Vertical_P" + player_nr); //get vertical movement
-                vertical = Input.GetAxis("Vertical"); //get vertical movement with keyboard
+                vertical = Input.GetAxis("Vertical_P" + player_nr); //get vertical movement
+                //vertical = Input.GetAxis("Vertical"); //get vertical movement with keyboard
 
                 if (animator.GetBool("onLadder") != true)
                 {
@@ -78,22 +89,44 @@ public class player_controller : MonoBehaviour {
 
     private void DoFire1Things()
     {
-        if (Input.GetButton("Fire1_P" + player_nr) || Input.GetButton("Fire1")) //the A button
+        if (Input.GetButton("Fire1_P" + player_nr) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
             if (animator.GetBool("pushTerminal") != true)
             {
                 animator.SetBool("pushTerminal", true);
             }
-            if (onTerminal)
+            if (onTerminalLeft)
+            { 
+                //theBooster.startBooster(-Time.deltaTime, 0, 0); //start booster
+                //boosterX = -Time.deltaTime;
+                //boosterY = 0;
+            }
+            if (onTerminalRight)
             {
-                theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
-                theBooster.startBooster(); //start booster
+                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
+                //theBooster.startBooster(Time.deltaTime, 0, 0); //start booster
+                //boosterX = Time.deltaTime;
+                //boosterY = 0;
+            }
+            if (onTerminalUp)
+            {
+                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
+                //theBooster.startBooster(0, Time.deltaTime, 0); //start booster
+                //boosterX = 0;
+                //boosterY = Time.deltaTime;
+
+            }
+            if (onTerminalBooster)
+            {
+                //theShip.transform.Translate(0, Time.deltaTime, 0); //move ship
+                //Debug.Log(boosterX + "---" + boosterY);
+                //theBooster.startBooster(boosterX, boosterY, 0); //start booster
             }
         }
         if ((Input.GetButtonUp("Fire1_P" + player_nr) || Input.GetButtonUp("Fire1")) && animator.GetBool("pushTerminal") != false)
         {
             animator.SetBool("pushTerminal", false); //play push terminal animation
-            theBooster.shutdownBooster(); //shutdown booster
+            //theBooster.shutdownBooster(); //shutdown booster
         }
     }
 
