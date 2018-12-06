@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public Animator animator;
     private Rigidbody2D body;
     public float speed;
+    public bool onDoor = false;
     public bool onTerminal = false;
     public bool onTerminalLeft = false;
     public bool onTerminalRight = false;
@@ -17,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
-    private BoosterControl theBooster;
 
     private bool alive = true;
 
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour {
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = body.gravityScale;
-        theBooster = FindObjectOfType<BoosterControl>();
         boosterX = 0;
         boosterY = 0;
     }

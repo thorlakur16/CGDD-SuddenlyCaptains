@@ -6,9 +6,7 @@ public class DoorController : MonoBehaviour {
 
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
-
-    private bool player1IsHere;
-    private bool player2IsHere;
+    
     public Animator animator;
     public GameObject theDoor;
     public float timeOpen = 0f;
@@ -17,8 +15,6 @@ public class DoorController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player1IsHere = false;
-        player2IsHere = false;
         animator = GetComponentInParent<Animator>();
 	}
 	
@@ -28,12 +24,16 @@ public class DoorController : MonoBehaviour {
         {
             timeOpen--;
             //check if ship has landed
-            if (!theShip.hasLanded)
+            if (!theShip.hasLanded && thePlayer1.onDoor)
             {
                 thePlayer1.transform.Translate(Time.deltaTime * 1.5f, 0, 0);
             }
+            if (!theShip.hasLanded && thePlayer2.onDoor)
+            {
+                thePlayer2.transform.Translate(Time.deltaTime * 2f, 0, 0);
+            }
         }
-        if (player1IsHere)
+        if (thePlayer1.onDoor)
         {
             if (Input.GetButton("Fire1_P1"))
             {
@@ -44,16 +44,19 @@ public class DoorController : MonoBehaviour {
                 //check if ship has landed
                 if (!theShip.hasLanded)
                 {
+                    Rigidbody2D body = thePlayer1.GetComponent<Rigidbody2D>();
+                    body.gravityScale = -0.1f;
+                    body.AddForce(transform.right * 10);
+
                     thePlayer1.KillPlayer();
                 }
             }
         }
 
-        if (player2IsHere)
+        if (thePlayer2.onDoor)
         {
             if (Input.GetButton("Fire1_P2"))
             {
-                Debug.Log("here");
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
                 timeOpen = 60;
@@ -61,6 +64,9 @@ public class DoorController : MonoBehaviour {
                 //check if ship has landed
                 if (!theShip.hasLanded)
                 {
+                    Rigidbody2D body = thePlayer2.GetComponent<Rigidbody2D>();
+                    body.gravityScale = -0.1f;
+                    body.AddForce(transform.right * 10);
                     thePlayer2.KillPlayer();
                 }
             }
@@ -76,27 +82,27 @@ public class DoorController : MonoBehaviour {
 
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Player1")
         {
-            player1IsHere = true;
+            thePlayer1.onDoor = true;
         }
         if (collision.gameObject.name == "Player2")
         {
-            player2IsHere = true;
+            thePlayer2.onDoor = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player1")
         {
-            player1IsHere = false;
+            thePlayer1.onDoor = false;
         }
         if (collision.gameObject.name == "Player2")
         {
-            player2IsHere = false;
+            thePlayer2.onDoor = false;
         }
     }
 }
