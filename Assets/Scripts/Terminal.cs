@@ -71,6 +71,10 @@ public class Terminal : MonoBehaviour
 
             player2.onTerminal = true;
         }
+        if (!GameObject.FindObjectOfType<ShipHandler>().shipActive)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
     void OnTriggerExit2D(Collider2D coll)
     {
