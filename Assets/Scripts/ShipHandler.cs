@@ -27,7 +27,10 @@ public class ShipHandler : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public float speed;
+    public float minSpeed;
+    public float maxSpeed;
     public float hp;
+    public float mainThrusterSpeed;
 
     public bool hasLanded;
     
@@ -35,7 +38,6 @@ public class ShipHandler : MonoBehaviour
     private float xPosOfLandingPlatform;
     private bool mainThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
-
 
     // Use this for initialization
     void Start()
@@ -47,11 +49,9 @@ public class ShipHandler : MonoBehaviour
         hp = 1;
         healthBar.value = hp;
 
-
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
         theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
-
     }
 
     internal void stopBooster()
@@ -62,11 +62,21 @@ public class ShipHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed += 0.02f;
 
+        if(speed > maxSpeed)
+        {
+            speed = maxSpeed;
+        }
+        if(speed < minSpeed)
+        {
+            speed = minSpeed;
+        }
         //For ship landing!
         //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
         if (shipActive)
         {
+            Debug.Log(speed);
             Health();
             distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
 
@@ -83,7 +93,7 @@ public class ShipHandler : MonoBehaviour
             }
             if (hasLanded)
             {
-                if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3) && (theLandingGear.open))
+                if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3) && (theLandingGear.open) && (speed < 5))
                 {
                     completeText.SetActive(true);
                     //Debug.Log("You are safe, Congratz");
@@ -116,7 +126,7 @@ public class ShipHandler : MonoBehaviour
     }
     public void LeftThrusterOn()
     {
-        leftThrust = Time.deltaTime * speed;
+        leftThrust = Time.deltaTime * speed/2f;
         rightThrust = 0;
     }
     public void LeftThrusterOff()
@@ -126,7 +136,7 @@ public class ShipHandler : MonoBehaviour
     }
     public void RightThrusterOn()
     {
-        rightThrust = -Time.deltaTime * speed;
+        rightThrust = -Time.deltaTime * speed/2f;
         leftThrust = 0;
     }
     public void RightThrusterOff()
@@ -144,7 +154,8 @@ public class ShipHandler : MonoBehaviour
                 {
                     mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
                     boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
-                    theShip.transform.Translate(rightThrust + leftThrust, Time.deltaTime, 0);
+                    speed -= mainThrusterSpeed;
+                    theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
                 }
                 boosterRight.GetComponent<Animator>().SetBool("boosterActive", true);
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
@@ -155,7 +166,8 @@ public class ShipHandler : MonoBehaviour
                 {
                     mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
                     boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
-                    theShip.transform.Translate(rightThrust + leftThrust, Time.deltaTime, 0);
+                    speed -= mainThrusterSpeed;
+                    theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
                 }
                 boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
@@ -167,7 +179,8 @@ public class ShipHandler : MonoBehaviour
                     mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
                     boosterLeft.GetComponent<Animator>().SetBool("boosterActive", false);
                     boosterRight.GetComponent<Animator>().SetBool("boosterActive", false);
-                    theShip.transform.Translate(0, Time.deltaTime, 0);
+                    speed -= mainThrusterSpeed;
+                    theShip.transform.Translate(0, 0, 0);
                 }
 
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);

@@ -50,7 +50,7 @@ public class DoorController : MonoBehaviour {
             {
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
-                timeOpen = 60;
+                timeOpen = 50;
                 theDoor.GetComponent<BoxCollider2D>().enabled = false;
                 //check if ship has landed
                 if (!theShip.hasLanded)
