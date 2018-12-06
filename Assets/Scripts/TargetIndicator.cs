@@ -9,12 +9,7 @@ public class TargetIndicator : MonoBehaviour {
     public float hide;
     private float showForAsteroid = 40;
     private Animator anim;
-    private ArrayList asteroids;
-
-    private void Start()
-    {
-        
-    }
+	
 
     // Update is called once per frame
     void Update () {
@@ -76,9 +71,7 @@ public class TargetIndicator : MonoBehaviour {
                 Destroy(gameObject);
             }
             
-            //Debug.Log(distanceToAsteroid.y - 5);
         }
-
 
 
         //if (direction.magnitude < hide)

@@ -35,11 +35,22 @@ public class DoorController : MonoBehaviour {
         }
         if (thePlayer1.onDoor)
         {
+            if (!theShip.hasLanded)
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true; //red
+            }
+            else
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+            }
+
             if (Input.GetButton("Fire1_P1"))
             {
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
-                timeOpen = 60;
+                timeOpen = 50;
                 theDoor.GetComponent<BoxCollider2D>().enabled = false;
                 //check if ship has landed
                 if (!theShip.hasLanded)
@@ -80,6 +91,12 @@ public class DoorController : MonoBehaviour {
             animator.ResetTrigger("openDoor");
         }
 
+        if (!theShip.shipActive)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+            transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+        }
+
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -96,6 +113,10 @@ public class DoorController : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        
+        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+        
         if (collision.gameObject.name == "Player1")
         {
             thePlayer1.onDoor = false;

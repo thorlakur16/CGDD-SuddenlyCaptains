@@ -19,11 +19,18 @@ public class RightTerminal : MonoBehaviour {
         if (thePlayer1.onTerminalRight)
         {
             if (Input.GetButton("Fire1_P1"))
-            {                
+            {
                 boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
                 boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.RightThrusterOn();
-                
+
+            }
+            if (Input.GetButton("Fire2_P1"))
+            {
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.RightThrusterOff();
+
             }
 
         }
@@ -35,6 +42,14 @@ public class RightTerminal : MonoBehaviour {
                 boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.RightThrusterOn();
             }
+            if (Input.GetButton("Fire2_P2"))
+            {
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.RightThrusterOff();
+
+            }
         }
     }
 }
+

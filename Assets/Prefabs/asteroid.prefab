@@ -22,8 +22,7 @@ GameObject:
   - component: {fileID: 212050968074586920}
   - component: {fileID: 114255223180083676}
   - component: {fileID: 95014373042659900}
-  - component: {fileID: 50116536922246210}
-  - component: {fileID: 61751763787869490}
+  - component: {fileID: 61135374557187288}
   m_Layer: 0
   m_Name: asteroid
   m_TagString: InstanceOfAsteroid
@@ -94,6 +93,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!4 &4499385195364232
 Transform:
   m_ObjectHideFlags: 1
@@ -155,6 +155,9 @@ Rigidbody2D:
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &61751763787869490
+=======
+--- !u!61 &61135374557187288
+>>>>>>> d3c92eebaf15a1e5628ac5750abcbbeea65c5708
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

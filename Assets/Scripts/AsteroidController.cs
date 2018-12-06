@@ -6,16 +6,20 @@ public class AsteroidController : MonoBehaviour {
 
     public Animator animator;
     public ShipHandler theShip;
+    public Transform target;
     public float rotation;
     public float speed;
-    public Transform target;
     private float showForAsteroid = 40;
+
+    public float hide;
 
     private bool hit = false;
 	// Use this for initialization
 	void Start () {
         theShip = FindObjectOfType<ShipHandler>();
-        target = transform;
+        gameObject.AddComponent<Rigidbody2D>();
+        gameObject.AddComponent<BoxCollider2D>();
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 	}
 	
 	// Update is called once per frame
@@ -29,30 +33,18 @@ public class AsteroidController : MonoBehaviour {
         else
         {
             transform.Rotate(0, 0, Time.deltaTime * rotation);
-
-            var distToAst = CalculateDistanceToTarget(); //Distance from ship to asteroid
-
-            //Check how close the ship is to asteroid
-            //if(distToAst.magnitude < showForAsteroid)
-            //{
-            //    transform.GetChild(0).gameObject.SetActive(true);
-
-            //    RotateArrowToFollowTarget(distToAst);
-            //} else if(transform.position.y > theShip.transform.position.y)
-            //{
-            //    Destroy(gameObject);
-            //} else
-            //{
-            //    transform.GetChild(0).gameObject.SetActive(false);
-            //}
         }
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
         //play animation explode
         animator.SetTrigger("Explode");
-        hit = true;
+        if(coll.name == "theShip")
+        {
+            hit = true;
+            theShip.ShipIsHit();
+        }
         Destroy(gameObject, 0.4f);
         //
     }
