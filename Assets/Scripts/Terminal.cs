@@ -13,7 +13,6 @@ public class Terminal : MonoBehaviour
     void Start()
     {
 
-
     }
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -22,22 +21,27 @@ public class Terminal : MonoBehaviour
         {
             if (name == "TerminalLeft")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player1.onTerminalLeft = true;
             }
             if (name == "TerminalRight")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player1.onTerminalRight = true;
             }
             if (name == "TerminalMain")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player1.onTerminalUp = true;
             }
             if (name == "TerminalBooster")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player1.onTerminalBooster = true;
             }
             if (name == "TerminalLandingGear")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player1.onTerminalLandingGear = true;
             }
             player1.onTerminal = true;
@@ -72,6 +76,7 @@ public class Terminal : MonoBehaviour
     {
         if (coll.gameObject.name == "Player1")
         {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             player1.onTerminal = false;
             player1.onTerminalLeft = false;
             player1.onTerminalRight = false;
@@ -81,6 +86,7 @@ public class Terminal : MonoBehaviour
         }
         if (coll.gameObject.name == "Player2")
         {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
             player2.onTerminal = false;
             player2.onTerminalLeft = false;
             player2.onTerminalRight = false;

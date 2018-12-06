@@ -239,6 +239,5 @@ public class ShipHandler : MonoBehaviour
 
         thePlayer1.KillPlayer();
         thePlayer2.KillPlayer();
-    }
-    
+    } 
 }

@@ -35,6 +35,17 @@ public class DoorController : MonoBehaviour {
         }
         if (thePlayer1.onDoor)
         {
+            if (!theShip.hasLanded)
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true; //red
+            }
+            else
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+            }
+
             if (Input.GetButton("Fire1_P1"))
             {
                 animator.SetTrigger("openDoor");
@@ -96,6 +107,10 @@ public class DoorController : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        
+        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+        
         if (collision.gameObject.name == "Player1")
         {
             thePlayer1.onDoor = false;
