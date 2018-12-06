@@ -259,7 +259,7 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 20
   hp: 0
-  mainThrusterSpeed: 1
+  mainThrusterSpeed: 0.1
   hasLanded: 0
 --- !u!1 &129732745
 GameObject:

@@ -6,8 +6,11 @@ public class AsteroidController : MonoBehaviour {
 
     public Animator animator;
     public ShipHandler theShip;
+    public Transform target;
     public float rotation;
     public float speed;
+
+    public float hide;
 
     private bool hit = false;
 	// Use this for initialization
@@ -28,9 +31,23 @@ public class AsteroidController : MonoBehaviour {
         }
         else
         {
-            transform.Rotate(0, 0, Time.deltaTime * rotation);
+            //transform.Rotate(0, 0, Time.deltaTime * rotation);
         }
-	}
+
+        var direction = target.transform.position - theShip.transform.position;
+        Debug.Log(direction.magnitude < hide);
+        if (direction.magnitude < hide)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+
+            var angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
+            transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
