@@ -5,7 +5,7 @@ using UnityEngine;
 public class LandingGearController : MonoBehaviour {
 
     public Animator animator;
-    private bool open;
+    public bool open;
 	// Use this for initialization
 	void Start () {
         open = false;

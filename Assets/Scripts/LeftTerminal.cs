@@ -19,19 +19,31 @@ public class LeftTerminal : MonoBehaviour {
         if (thePlayer1.onTerminalLeft)
         {
             if (Input.GetButton("Fire1_P1"))
-            {                                   
+            {
                 boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
                 boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.LeftThrusterOn();
+            }
+            if (Input.GetButton("Fire2_P1"))
+            {
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.LeftThrusterOff();
             }
         }
         if (thePlayer2.onTerminalLeft)
         {
             if (Input.GetButton("Fire1_P2"))
-            {                                   
+            {
                 boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
                 boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                theShip.LeftThrusterOn();                  
+                theShip.LeftThrusterOn();
+            }
+            if (Input.GetButton("Fire2_P2"))
+            {
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.LeftThrusterOff();
             }
         }
     }
