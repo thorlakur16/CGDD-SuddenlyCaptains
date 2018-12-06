@@ -17,7 +17,6 @@ public class RepeatingBackground : MonoBehaviour {
     {
 		if(transform.position.y > theShip.transform.position.y+ verticalHeight / 1.5f)
         {
-            Debug.Log("true here baby");
             RepositionBackground();
         }
 	}

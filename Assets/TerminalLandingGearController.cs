@@ -10,7 +10,7 @@ public class TerminalLandingGearController : MonoBehaviour {
     public LandingGearController landingGear2;
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame

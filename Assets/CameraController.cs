@@ -6,25 +6,25 @@ public class CameraController : MonoBehaviour {
 
     public ShipHandler theShip;
 
-    [SerializeField]
-    Gradient gradient;
-    [SerializeField]
-    float duration = 3f;
-    float t = 0f;
+    public GameObject thePlanetGround;
+    float t = 1f;
     Camera camera;
+    float distance;
 
     // Use this for initialization
     void Start () {
         camera = GetComponent<Camera>();
         camera.clearFlags = CameraClearFlags.SolidColor;
-
+        distance = Mathf.Abs(thePlanetGround.transform.position.y - theShip.transform.position.y);
     }
 	
 	// Update is called once per frame
-	void Update () {
-        t += 1;
-        Debug.Log(t / 10000f);
-        camera.backgroundColor = new Color(0,0,t/10000f,0);
+	void Update ()
+    {
+        float currentlytraveled = Mathf.Abs(thePlanetGround.transform.position.y - theShip.transform.position.y);
+        float currentDistance = distance - currentlytraveled;
+
+        camera.backgroundColor = new Color(0,0,currentDistance/distance/8,0);
 
     }
 }

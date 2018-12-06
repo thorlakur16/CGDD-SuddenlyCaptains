@@ -6,6 +6,8 @@ public class LeftTerminal : MonoBehaviour {
     public ShipHandler theShip;
     public player_controller thePlayer1;
     public player_controller thePlayer2;
+    public GameObject boosterLeft;
+    public GameObject boosterRight;
     // Use this for initialization
     void Start () {
 		
@@ -17,15 +19,19 @@ public class LeftTerminal : MonoBehaviour {
         if (thePlayer1.onTerminalLeft)
         {
             if (Input.GetButton("Fire1_P1"))
-            {
+            {                                   
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.LeftThrusterOn();
             }
         }
         if (thePlayer2.onTerminalLeft)
         {
             if (Input.GetButton("Fire1_P2"))
-            {
-                theShip.LeftThrusterOn();
+            {                                   
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.LeftThrusterOn();                  
             }
         }
     }

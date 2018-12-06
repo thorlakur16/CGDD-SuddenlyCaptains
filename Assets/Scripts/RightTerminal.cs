@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RightTerminal : MonoBehaviour {
     public ShipHandler theShip;
+    public GameObject boosterRight;
+    public GameObject boosterLeft;
     public player_controller thePlayer1;
     public player_controller thePlayer2;
     // Use this for initialization
@@ -17,9 +19,11 @@ public class RightTerminal : MonoBehaviour {
         if (thePlayer1.onTerminalRight)
         {
             if (Input.GetButton("Fire1_P1"))
-            {
-               
+            {                
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.RightThrusterOn();
+                
             }
 
         }
@@ -27,6 +31,8 @@ public class RightTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P2"))
             {
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.RightThrusterOn();
             }
         }

@@ -19,7 +19,6 @@ public class AsteroidController : MonoBehaviour {
     {
         if (hit)
         {
-            Debug.Log("hit");
             transform.Translate(0, -Time.deltaTime * theShip.speed, 0);
             transform.rotation = Quaternion.identity;
         }
