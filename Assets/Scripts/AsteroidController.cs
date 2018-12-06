@@ -13,6 +13,9 @@ public class AsteroidController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         theShip = FindObjectOfType<ShipHandler>();
+        gameObject.AddComponent<Rigidbody2D>();
+        gameObject.AddComponent<BoxCollider2D>();
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 	}
 	
 	// Update is called once per frame

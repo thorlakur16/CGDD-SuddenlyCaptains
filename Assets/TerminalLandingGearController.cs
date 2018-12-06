@@ -21,6 +21,18 @@ public class TerminalLandingGearController : MonoBehaviour {
                 thePlayer2 = player;
             }
         }
+
+        foreach (LandingGearController gear in GameObject.FindObjectsOfType(typeof(LandingGearController)))
+        {
+            if (gear.name == "LandingGearRight")
+            {
+                landingGear1 = gear;
+            }
+            else if (gear.name == "LandingGearLeft")
+            {
+                landingGear2 = gear;
+            }
+        }
     }
 	
 	// Update is called once per frame

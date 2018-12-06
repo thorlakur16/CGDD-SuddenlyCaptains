@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class ShipHandler : MonoBehaviour
 {
-
+    public GameObject explosion;
     public GameObject boosterRight;
     public GameObject boosterLeft;
     public GameObject mainThruster;
     public GameObject theShip;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
 
     public GameObject theLandingSpot;
     public GameObject completeText;
     public GameObject dieText;
+
+    public bool shipActive = true;
 
     public Transform groundCheckPoint;
     public float groundCheckRadius;
@@ -77,7 +81,12 @@ public class ShipHandler : MonoBehaviour
             }
             else
             {
-                dieText.SetActive(true);
+                if (shipActive)
+                {
+                    shipActive = false;
+                    BreakShip();
+                    dieText.SetActive(true);
+                }
             }
         }
     }
@@ -109,7 +118,6 @@ public class ShipHandler : MonoBehaviour
     }
     public void StartBooster()
     {
-        Debug.Log("rightThrust: " + rightThrust + ", leftThrust: " + leftThrust + " = " + (rightThrust + leftThrust));
         if (mainThrusterIsOn)
         {
             mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
@@ -125,14 +133,112 @@ public class ShipHandler : MonoBehaviour
             boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
             theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
         }
-        //boosterOn = true;
-        //theShip.transform.Translate(x, y, z); //move ship
     }
     public void StopBooster()
     {
         mainThruster.GetComponent<Animator>().SetBool("thrusterActive", false);
         boosterRight.GetComponent<Animator>().SetBool("boosterActive", false);
         boosterLeft.GetComponent<Animator>().SetBool("boosterActive", false);
+    }
+
+    public void BreakShip()
+    {
+        float force = 20f;
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
+        GameObject[] decors = GameObject.FindGameObjectsWithTag("Decor");
+        GameObject[] covers = GameObject.FindGameObjectsWithTag("Cover");
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+        GameObject[] boosters = GameObject.FindGameObjectsWithTag("Booster");
+
+        foreach (GameObject room in rooms)
+        {
+            Instantiate(explosion, new Vector3(room.transform.position.x, room.transform.position.y,0), Quaternion.identity);
+
+            room.AddComponent<Rigidbody2D>();
+            Rigidbody2D body = room.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.1f;
+            Vector2 randomVector = new Vector2(UnityEngine.Random.Range(-force, force), UnityEngine.Random.Range(-force, force));
+            if (!hasLanded)
+            {
+                transform.Rotate(0, 0, UnityEngine.Random.Range(-force, force));
+            }            
+            body.AddForce(randomVector);
+        }
+        foreach (GameObject decor in decors)
+        {
+
+            Instantiate(explosion, new Vector3(decor.transform.position.x, decor.transform.position.y, 0), Quaternion.identity);
+            decor.AddComponent<Rigidbody2D>();
+            decor.AddComponent<PolygonCollider2D>();
+            Rigidbody2D body = decor.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.1f;
+            Vector2 randomVector = new Vector2(UnityEngine.Random.Range(-force, force), UnityEngine.Random.Range(-force, force));
+            if (!hasLanded)
+            {
+                transform.Rotate(0, 0, UnityEngine.Random.Range(-force, force));
+            }
+            body.AddForce(randomVector);
+        }
+        foreach (GameObject cover in covers)
+        {
+            Instantiate(explosion, new Vector3(cover.transform.position.x, cover.transform.position.y, 0), Quaternion.identity);
+            cover.AddComponent<Rigidbody2D>();
+            cover.AddComponent<PolygonCollider2D>();
+            Rigidbody2D body = cover.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.1f;
+            Vector2 randomVector = new Vector2(UnityEngine.Random.Range(-force, force), UnityEngine.Random.Range(-force, force));
+            if (!hasLanded)
+            {
+                transform.Rotate(0, 0, UnityEngine.Random.Range(-force, force));
+            }
+            body.AddForce(randomVector);
+        }
+        foreach (GameObject door in doors)
+        {
+            Instantiate(explosion, new Vector3(door.transform.position.x, door.transform.position.y, 0), Quaternion.identity);
+            door.AddComponent<Rigidbody2D>();
+            Rigidbody2D body = door.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.1f;
+            Vector2 randomVector = new Vector2(UnityEngine.Random.Range(-force, force), UnityEngine.Random.Range(-force, force));
+            if (!hasLanded)
+            {
+                transform.Rotate(0, 0, UnityEngine.Random.Range(-force, force));
+            }
+            body.AddForce(randomVector);
+        }
+
+        foreach (GameObject booster in boosters)
+        {
+            Instantiate(explosion, new Vector3(booster.transform.position.x, booster.transform.position.y, 0), Quaternion.identity);
+            booster.AddComponent<Rigidbody2D>();
+            Rigidbody2D body = booster.GetComponent<Rigidbody2D>();
+            body.gravityScale = 0.1f;
+            Vector2 randomVector = new Vector2(UnityEngine.Random.Range(-force, force), UnityEngine.Random.Range(-force, force));
+            if (!hasLanded)
+            {
+                transform.Rotate(0, 0, UnityEngine.Random.Range(-force, force));
+            }
+            body.AddForce(randomVector);
+        }
+
+        foreach (LandingGearController gear in GameObject.FindObjectsOfType(typeof(LandingGearController)))
+        {
+            Instantiate(explosion, new Vector3(gear.transform.position.x, gear.transform.position.y, 0), Quaternion.identity);
+            if (gear.isOpen())
+            {
+                gear.GetComponent<BoxCollider2D>().enabled = false;
+                gear.gameObject.AddComponent<PolygonCollider2D>();
+                gear.gameObject.AddComponent<Rigidbody2D>();
+            }
+            else
+            {
+                gear.GetComponent<BoxCollider2D>().enabled = true;
+                gear.gameObject.AddComponent<Rigidbody2D>();
+            }
+        }
+
+        thePlayer1.KillPlayer();
+        thePlayer2.KillPlayer();
     }
     
 }
