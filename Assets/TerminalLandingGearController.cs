@@ -21,6 +21,7 @@ public class TerminalLandingGearController : MonoBehaviour {
                 thePlayer2 = player;
             }
         }
+
         foreach (LandingGearController lander in GameObject.FindObjectsOfType(typeof(LandingGearController)))
         {
             if (lander.name == "LandingGearRight")
@@ -30,6 +31,7 @@ public class TerminalLandingGearController : MonoBehaviour {
             else if (lander.name == "LandingGearLeft")
             {
                 landingGear2 = lander;
+
             }
         }
     }

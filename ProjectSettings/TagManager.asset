@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Planet
   - LandingPlatform
+  - Room
+  - Decor
+  - Cover
+  - Door
+  - Booster
+  - LandingGear
   layers:
   - Default
   - TransparentFX
