@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipHandler : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class ShipHandler : MonoBehaviour
     public GameObject theLandingSpot;
     public GameObject completeText;
     public GameObject dieText;
+    public LandingGearController theLandingGear;
+    public Slider healthBar;
+    public Image Fill;
 
     public Transform groundCheckPoint;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public float speed;
+    public float hp;
 
     public bool hasLanded;
     
@@ -35,6 +40,8 @@ public class ShipHandler : MonoBehaviour
         mainThrusterIsOn = false;
         leftThrust = 0f;
         rightThrust = 0f;
+        hp = 1;
+        healthBar.value = hp;
         
 
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
@@ -54,10 +61,10 @@ public class ShipHandler : MonoBehaviour
 
         //For ship landing!
         //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-
+        Health();
         distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
 
-        hasLanded = theLandingSpot.transform.position.y + 3.2 >= groundCheckPoint.position.y;
+        hasLanded = theLandingSpot.transform.position.y + 4.8 >= groundCheckPoint.position.y;
         
         if (!hasLanded)
         {
@@ -70,13 +77,14 @@ public class ShipHandler : MonoBehaviour
         }
         if (hasLanded)
         {
-            if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3))
+            if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3) && (theLandingGear.open))
             {
                 completeText.SetActive(true);
-                Debug.Log("You are safe, Congratz");
+                //Debug.Log("You are safe, Congratz");
             }
             else
             {
+                hp = 0;
                 dieText.SetActive(true);
             }
         }
@@ -98,6 +106,8 @@ public class ShipHandler : MonoBehaviour
     }
     public void LeftThrusterOff()
     {
+        leftThrust = 0;
+        rightThrust = 0;
     }
     public void RightThrusterOn()
     {
@@ -106,25 +116,48 @@ public class ShipHandler : MonoBehaviour
     }
     public void RightThrusterOff()
     {
+        leftThrust = 0;
+        rightThrust = 0;
     }
     public void StartBooster()
     {
         Debug.Log("rightThrust: " + rightThrust + ", leftThrust: " + leftThrust + " = " + (rightThrust + leftThrust));
-        if (mainThrusterIsOn)
-        {
-            mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
-            theShip.transform.Translate(0, Time.deltaTime, 0);
-        }
+
         if (rightThrust + leftThrust < 0)
         {
+            if (mainThrusterIsOn)
+            {
+                mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
+                theShip.transform.Translate(rightThrust + leftThrust, Time.deltaTime, 0);
+            }
             boosterRight.GetComponent<Animator>().SetBool("boosterActive", true);
             theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
         }
         if(rightThrust + leftThrust > 0)
         {
+            if (mainThrusterIsOn)
+            {
+                mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
+                theShip.transform.Translate(rightThrust + leftThrust, Time.deltaTime, 0);
+            }
             boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
             theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
         }
+        if (rightThrust + leftThrust == 0)
+        {
+            if (mainThrusterIsOn)
+            {
+                mainThruster.GetComponent<Animator>().SetBool("thrusterActive", true);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterActive", false);
+                boosterRight.GetComponent<Animator>().SetBool("boosterActive", false);
+                theShip.transform.Translate(0, Time.deltaTime, 0);
+            }
+
+            theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
+        }
+
         //boosterOn = true;
         //theShip.transform.Translate(x, y, z); //move ship
     }
@@ -135,4 +168,21 @@ public class ShipHandler : MonoBehaviour
         boosterLeft.GetComponent<Animator>().SetBool("boosterActive", false);
     }
     
+    public void Health()
+    {
+        healthBar.value = hp;
+        if (hp <= 0.30f)
+        {
+            Fill.color = Color.red;
+        }
+        if(hp < 0.03f)
+        {
+            dieText.SetActive(true);
+            hasLanded = true;
+        }
+    }
+    public void ShipIsHit()
+    {
+        hp -= 0.10f;
+    }
 }

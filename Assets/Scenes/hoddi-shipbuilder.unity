@@ -173,6 +173,11 @@ Prefab:
       propertyPath: thePlanetGround
       value: 
       objectReference: {fileID: 1802244498}
+    - target: {fileID: 114816505582516748, guid: 472266cc3d1649a41ae4ed391c9a6c9d,
+        type: 2}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472266cc3d1649a41ae4ed391c9a6c9d, type: 2}
   m_IsPrefabAsset: 0

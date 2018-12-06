@@ -34,6 +34,7 @@ public class AsteroidController : MonoBehaviour {
         //play animation explode
         animator.SetTrigger("Explode");
         hit = true;
+        theShip.ShipIsHit();
         Destroy(gameObject, 0.4f);
         //
     }

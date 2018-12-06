@@ -25,6 +25,13 @@ public class RightTerminal : MonoBehaviour {
                 theShip.RightThrusterOn();
                 
             }
+            if (Input.GetButton("Fire2_P1"))
+            {
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.RightThrusterOff();
+
+            }
 
         }
         if (thePlayer2.onTerminalRight)
@@ -34,6 +41,13 @@ public class RightTerminal : MonoBehaviour {
                 boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
                 boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
                 theShip.RightThrusterOn();
+            }
+            if (Input.GetButton("Fire2_P2"))
+            {
+                boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+                boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                theShip.RightThrusterOff();
+
             }
         }
     }
