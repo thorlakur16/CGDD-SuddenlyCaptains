@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Planet
   - LandingPlatform
+  - Asteroid
+  - InstanceOfAsteroid
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
