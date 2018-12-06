@@ -34,15 +34,21 @@ public class TerminalLandingGearController : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (thePlayer1.onTerminalLandingGear)
         {
             if (Input.GetButton("Fire1_P1"))
             {
                 landingGear1.LandingGearDown();
                 landingGear2.LandingGearDown();
+            }
+            if (Input.GetButton("Fire2_P1"))
+            {
+                landingGear1.LandingGearUp();
+                landingGear2.LandingGearUp();
             }
         }
         if (thePlayer2.onTerminalLandingGear)
@@ -52,7 +58,12 @@ public class TerminalLandingGearController : MonoBehaviour {
                 landingGear1.LandingGearDown();
                 landingGear2.LandingGearDown();
             }
+            if (Input.GetButton("Fire2_P2"))
+            {
+                landingGear1.LandingGearUp();
+                landingGear2.LandingGearUp();
+            }
         }
-        
+
     }
 }

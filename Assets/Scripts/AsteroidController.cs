@@ -35,8 +35,10 @@ public class AsteroidController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D coll)
     {
         //play animation explode
+        Debug.Log("lololol");
         animator.SetTrigger("Explode");
         hit = true;
+        theShip.ShipIsHit();
         Destroy(gameObject, 0.4f);
         //
     }
