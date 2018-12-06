@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShipHandler : MonoBehaviour
 {
@@ -65,6 +66,13 @@ public class ShipHandler : MonoBehaviour
 
         //For ship landing!
         //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        if (!shipActive)
+        {
+            if (Input.GetButton("Fire1_P1") || Input.GetButton("Fire1_P2"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
         if (shipActive)
         {
             Health();
