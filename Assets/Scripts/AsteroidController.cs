@@ -35,7 +35,7 @@ public class AsteroidController : MonoBehaviour {
         }
 
         var direction = target.transform.position - theShip.transform.position;
-        Debug.Log(direction.magnitude < hide);
+        //Debug.Log(direction.magnitude < hide);
         if (direction.magnitude < hide)
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -53,6 +53,7 @@ public class AsteroidController : MonoBehaviour {
     {
         //play animation explode
         animator.SetTrigger("Explode");
+        Debug.Log(coll.name);
         if(coll.name == "theShip")
         {
             hit = true;
