@@ -28,7 +28,7 @@ public class AsteroidController : MonoBehaviour {
         }
         else
         {
-            //transform.Rotate(0, 0, Time.deltaTime * rotation);
+            transform.Rotate(0, 0, Time.deltaTime * rotation);
 
             var distToAst = CalculateDistanceToTarget(); //Distance from ship to asteroid
 

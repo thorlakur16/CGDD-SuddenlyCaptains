@@ -16,6 +16,7 @@ public class ShipHandler : MonoBehaviour
     public GameObject dieText;
 
     public Transform groundCheckPoint;
+    public Transform middleOfShip;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public float speed;

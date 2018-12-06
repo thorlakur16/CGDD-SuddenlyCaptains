@@ -59,7 +59,7 @@ public class TargetIndicator : MonoBehaviour {
         if (tag == "Asteroid")
         {
             ShipHandler ship = FindObjectOfType<ShipHandler>();
-            target = ship.groundCheckPoint;
+            target = ship.middleOfShip;
             var distanceToAsteroid = CalculateDistanceToTarget();
             //Check how close the ship is to asteroid
             if (distanceToAsteroid.magnitude < showForAsteroid)
@@ -67,15 +67,15 @@ public class TargetIndicator : MonoBehaviour {
                 transform.GetChild(0).gameObject.SetActive(true);
 
                 RotateArrowToFollowTarget(distanceToAsteroid);
-            }
-            else if (distanceToAsteroid.y - 5 <= 5)
-            {
-                Destroy(gameObject);
-            }
-            else
+            } else
             {
                 transform.GetChild(0).gameObject.SetActive(false);
             }
+            if (distanceToAsteroid.magnitude < hide)
+            {
+                Destroy(gameObject);
+            }
+            
             //Debug.Log(distanceToAsteroid.y - 5);
         }
 
