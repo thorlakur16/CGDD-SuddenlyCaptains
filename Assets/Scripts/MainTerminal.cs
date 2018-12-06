@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MainTerminal : MonoBehaviour {
     public ShipHandler theShip;
-    public player_controller thePlayer1;
-    public player_controller thePlayer2;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
 
 
 	// Use this for initialization

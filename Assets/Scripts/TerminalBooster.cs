@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TerminalBooster : MonoBehaviour {
 
-    private booster_control theBooster;
+    private BoosterControl theBooster;
 
     // Use this for initialization
     void Start () {
-		theBooster = FindObjectOfType<booster_control>();
-        foreach (booster_control booster in GameObject.FindObjectsOfType(typeof(booster_control)))
+		theBooster = FindObjectOfType<BoosterControl>();
+        foreach (BoosterControl booster in GameObject.FindObjectsOfType(typeof(BoosterControl)))
         {
             if (booster.name == "TerminalUp")
             {

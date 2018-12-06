@@ -12,6 +12,7 @@ public class AsteroidController : MonoBehaviour {
     private bool hit = false;
 	// Use this for initialization
 	void Start () {
+        theShip = FindObjectOfType<ShipHandler>();
 	}
 	
 	// Update is called once per frame

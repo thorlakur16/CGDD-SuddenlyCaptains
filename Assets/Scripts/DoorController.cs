@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class door_controller : MonoBehaviour {
+public class DoorController : MonoBehaviour {
 
-    public player_controller thePlayer1;
-    public player_controller thePlayer2;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
 
     private bool player1IsHere;
     private bool player2IsHere;

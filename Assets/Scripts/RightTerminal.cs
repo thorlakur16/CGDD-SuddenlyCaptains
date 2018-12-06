@@ -6,8 +6,8 @@ public class RightTerminal : MonoBehaviour {
     public ShipHandler theShip;
     public GameObject boosterRight;
     public GameObject boosterLeft;
-    public player_controller thePlayer1;
-    public player_controller thePlayer2;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
     // Use this for initialization
     void Start () {
 		

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_controller : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
     private string player_nr;
     public Animator animator;
     private Rigidbody2D body;
@@ -17,8 +17,7 @@ public class player_controller : MonoBehaviour {
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
-    private ship theShip;
-    private booster_control theBooster;
+    private BoosterControl theBooster;
 
     private bool alive = true;
 
@@ -30,8 +29,7 @@ public class player_controller : MonoBehaviour {
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = body.gravityScale;
-        theShip = GameObject.FindObjectOfType<ship>();
-        theBooster = FindObjectOfType<booster_control>();
+        theBooster = FindObjectOfType<BoosterControl>();
         boosterX = 0;
         boosterY = 0;
     }

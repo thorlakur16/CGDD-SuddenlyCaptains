@@ -7,8 +7,7 @@ public class CameraController : MonoBehaviour {
     public ShipHandler theShip;
 
     public GameObject thePlanetGround;
-    float t = 1f;
-    Camera camera;
+    private Camera camera;
     float distance;
 
     // Use this for initialization
