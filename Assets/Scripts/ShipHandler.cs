@@ -25,6 +25,7 @@ public class ShipHandler : MonoBehaviour
     public bool shipActive = true;
 
     public Transform groundCheckPoint;
+    public Transform middleOfShip;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     public float speed;

@@ -9,6 +9,7 @@ public class AsteroidController : MonoBehaviour {
     public Transform target;
     public float rotation;
     public float speed;
+    private float showForAsteroid = 40;
 
     public float hide;
 
@@ -31,21 +32,7 @@ public class AsteroidController : MonoBehaviour {
         }
         else
         {
-            //transform.Rotate(0, 0, Time.deltaTime * rotation);
-        }
-
-        var direction = target.transform.position - theShip.transform.position;
-        Debug.Log(direction.magnitude < hide);
-        if (direction.magnitude < hide)
-        {
-            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        }
-        else
-        {
-            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
-
-            var angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
-            transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.Rotate(0, 0, Time.deltaTime * rotation);
         }
     }
 
@@ -60,5 +47,18 @@ public class AsteroidController : MonoBehaviour {
         }
         Destroy(gameObject, 0.4f);
         //
+    }
+
+    //For arrow indicator
+    private Vector3 CalculateDistanceToTarget()
+    {
+        return transform.position - target.position;
+    }
+
+    //For arrow indicator
+    private void RotateArrowToFollowTarget(Vector3 direction)
+    {
+        var angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
