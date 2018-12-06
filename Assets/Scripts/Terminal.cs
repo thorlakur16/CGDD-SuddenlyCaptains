@@ -50,22 +50,27 @@ public class Terminal : MonoBehaviour
         {
             if (name == "TerminalLeft")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player2.onTerminalLeft = true;
             }
             if (name == "TerminalRight")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player2.onTerminalRight = true;
             }
             if (name == "TerminalMain")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player2.onTerminalUp = true;
             }
             if (name == "TerminalBooster")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player2.onTerminalBooster = true;
             }
             if (name == "TerminalLandingGear")
             {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
                 player2.onTerminalLandingGear = true;
             }
 
