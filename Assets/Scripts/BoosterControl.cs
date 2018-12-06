@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class booster_control : MonoBehaviour {
+public class BoosterControl : MonoBehaviour {
 
 
     // Use this for initialization

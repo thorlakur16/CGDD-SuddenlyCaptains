@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class TerminalLandingGearController : MonoBehaviour {
 
-    public player_controller thePlayer1;
-    public player_controller thePlayer2;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
     public LandingGearController landingGear1;
     public LandingGearController landingGear2;
 	// Use this for initialization
 	void Start () {
-
-	}
+        foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
+        {
+            if (player.name == "Player1")
+            {
+                thePlayer1 = player;
+            }
+            else if (player.name == "Player2")
+            {
+                thePlayer2 = player;
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

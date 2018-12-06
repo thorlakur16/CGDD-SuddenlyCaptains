@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class terminal2 : MonoBehaviour
+public class Terminal : MonoBehaviour
 {
 
-    public player_controller player1;
-    public player_controller player2;
+    public PlayerController player1;
+    public PlayerController player2;
 
 
     // Use this for initialization

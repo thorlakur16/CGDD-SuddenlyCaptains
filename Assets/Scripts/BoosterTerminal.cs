@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BoosterTerminal : MonoBehaviour {
     public ShipHandler theShip;
-    public player_controller thePlayer1;
-    public player_controller thePlayer2;
+    public PlayerController thePlayer1;
+    public PlayerController thePlayer2;
 
     public GameObject boosterRight;
 
     public GameObject boosterLeft;
 
-    public booster_control boosterMain;
+    public BoosterControl boosterMain;
 
 
     // Use this for initialization

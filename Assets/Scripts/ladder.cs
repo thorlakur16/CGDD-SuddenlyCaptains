@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ladder : MonoBehaviour {
+public class Ladder : MonoBehaviour {
 
-    private player_controller player1;
-    private player_controller player2;
+    private PlayerController player1;
+    private PlayerController player2;
 
 
     // Use this for initialization
     void Start()
     {
-        foreach (player_controller player in GameObject.FindObjectsOfType(typeof(player_controller)))
+        foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
         {
             if (player.name == "Player1")
             {
