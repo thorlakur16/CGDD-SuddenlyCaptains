@@ -10,23 +10,17 @@ public class TargetIndicator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var direction = target.position - theShip.transform.position;
+        var direction = target.transform.position - theShip.transform.position;
 
         if(direction.magnitude < hide)
         {
-            foreach(Transform child in transform)
-            {
-                child.gameObject.SetActive(false);
-            }
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
         } else
         {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(true);
-            }
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
 
             var angle = Mathf.Atan2(direction.x, -direction.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.GetChild(0).transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 	}
 }
