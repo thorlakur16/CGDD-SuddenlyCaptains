@@ -11,6 +11,7 @@ public class player_controller : MonoBehaviour {
     public bool onTerminal = false;
     public bool onTerminalLeft = false;
     public bool onTerminalRight = false;
+    public bool onTerminalLandingGear = false;
     public bool onTerminalUp = false;
     public bool onTerminalBooster = false;
     public bool onLadder = false;

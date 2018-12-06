@@ -6,6 +6,14 @@ public class BoosterTerminal : MonoBehaviour {
     public ShipHandler theShip;
     public player_controller thePlayer1;
     public player_controller thePlayer2;
+
+    public GameObject boosterRight;
+
+    public GameObject boosterLeft;
+
+    public booster_control boosterMain;
+
+
     // Use this for initialization
     void Start () {
 		
@@ -18,15 +26,22 @@ public class BoosterTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P1"))
             {
-
-                theShip.startBooster();
+                theShip.StartBooster();
+            }
+            if (Input.GetButtonUp("Fire1_P1"))
+            {
+                theShip.StopBooster();
             }
         }
         if (thePlayer2.onTerminalBooster)
         {
             if (Input.GetButton("Fire1_P2"))
             {
-                theShip.startBooster();
+                theShip.StartBooster();
+            }
+            if (Input.GetButtonUp("Fire1_P2"))
+            {
+                theShip.StopBooster();
             }
         }
     }

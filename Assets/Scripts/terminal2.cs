@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class terminal2 : MonoBehaviour {
+public class terminal2 : MonoBehaviour
+{
 
     public player_controller player1;
     public player_controller player2;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
 
     }
@@ -34,6 +36,10 @@ public class terminal2 : MonoBehaviour {
             {
                 player1.onTerminalBooster = true;
             }
+            if (name == "TerminalLandingGear")
+            {
+                player1.onTerminalLandingGear = true;
+            }
             player1.onTerminal = true;
         }
         if (coll.gameObject.name == "Player2")
@@ -54,6 +60,10 @@ public class terminal2 : MonoBehaviour {
             {
                 player2.onTerminalBooster = true;
             }
+            if (name == "TerminalLandingGear")
+            {
+                player2.onTerminalLandingGear = true;
+            }
 
             player2.onTerminal = true;
         }
@@ -67,6 +77,7 @@ public class terminal2 : MonoBehaviour {
             player1.onTerminalRight = false;
             player1.onTerminalUp = false;
             player1.onTerminalBooster = false;
+            player1.onTerminalLandingGear = false;
         }
         if (coll.gameObject.name == "Player2")
         {
@@ -75,6 +86,7 @@ public class terminal2 : MonoBehaviour {
             player2.onTerminalRight = false;
             player2.onTerminalUp = false;
             player2.onTerminalBooster = false;
+            player2.onTerminalLandingGear = false;
         }
     }
 
