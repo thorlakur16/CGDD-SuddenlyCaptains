@@ -91,6 +91,12 @@ public class DoorController : MonoBehaviour {
             animator.ResetTrigger("openDoor");
         }
 
+        if (!theShip.shipActive)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+            transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+        }
+
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
