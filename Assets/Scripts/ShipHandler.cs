@@ -21,6 +21,7 @@ public class ShipHandler : MonoBehaviour
     public LandingGearController theLandingGear;
     public Slider healthBar;
     public Image Fill;
+    public Text speedText;
 
     public bool shipActive = true;
 
@@ -64,20 +65,13 @@ public class ShipHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed += 0.02f;
+        
 
-        if(speed > maxSpeed)
-        {
-            speed = maxSpeed;
-        }
-        if(speed < minSpeed)
-        {
-            speed = minSpeed;
-        }
         //For ship landing!
         //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
         if (!shipActive)
         {
+            
             if (Input.GetButton("Fire1_P1") || Input.GetButton("Fire1_P2"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -85,6 +79,23 @@ public class ShipHandler : MonoBehaviour
         }
         if (shipActive)
         {
+            speed += 0.02f;
+            if (speed > 5)
+            {
+                speedText.color = Color.red;
+            }
+            if (speed < 5)
+            {
+                speedText.color = Color.green;
+            }
+            if (speed > maxSpeed)
+            {
+                speed = maxSpeed;
+            }
+            if (speed < minSpeed)
+            {
+                speed = minSpeed;
+            }
             //Debug.Log(speed);
             Health();
             distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
@@ -96,15 +107,12 @@ public class ShipHandler : MonoBehaviour
                 transform.Translate(0, -Time.deltaTime * speed, 0);
             }
 
-            if (distanceToGround < 10) //and speed to fast
-            {
-                //Do something, like explode the ship, if players are landing too harsly
-            }
             if (hasLanded)
             {
-                if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 1.3) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 1.3) && (theLandingGear.open) && (speed < 5))
+                if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 9) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 9) && (theLandingGear.open) && (speed < 5))
                 {
                     completeText.SetActive(true);
+                    speed = 0;
                     //Debug.Log("You are safe, Congratz");
                 }
                 else
@@ -135,7 +143,7 @@ public class ShipHandler : MonoBehaviour
     }
     public void LeftThrusterOn()
     {
-        leftThrust = Time.deltaTime * speed/2f;
+        leftThrust = Time.deltaTime * speed;
         rightThrust = 0;
     }
     public void LeftThrusterOff()
@@ -145,7 +153,7 @@ public class ShipHandler : MonoBehaviour
     }
     public void RightThrusterOn()
     {
-        rightThrust = -Time.deltaTime * speed/2f;
+        rightThrust = -Time.deltaTime * speed;
         leftThrust = 0;
     }
     public void RightThrusterOff()

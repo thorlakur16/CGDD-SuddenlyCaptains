@@ -66,6 +66,16 @@ public class DoorController : MonoBehaviour {
 
         if (thePlayer2.onDoor)
         {
+            if (!theShip.hasLanded)
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true; //red
+            }
+            else
+            {
+                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true; //green
+                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
+            }
             if (Input.GetButton("Fire1_P2"))
             {
                 animator.SetTrigger("openDoor");

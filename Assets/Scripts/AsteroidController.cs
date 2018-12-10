@@ -42,7 +42,7 @@ public class AsteroidController : MonoBehaviour {
         //play animation explode
         animator.SetTrigger("Explode");
         Debug.Log(coll.name);
-        if(coll.name == "theShip")
+        if(coll.name != "asteroid-use")
         {
             hit = true;
             theShip.ShipIsHit();
