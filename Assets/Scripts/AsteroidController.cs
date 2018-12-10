@@ -32,6 +32,7 @@ public class AsteroidController : MonoBehaviour {
         }
         else
         {
+
             transform.Rotate(0, 0, Time.deltaTime * rotation);
         }
     }
@@ -40,7 +41,8 @@ public class AsteroidController : MonoBehaviour {
     {
         //play animation explode
         animator.SetTrigger("Explode");
-        if(coll.name == "theShip")
+        Debug.Log(coll.name);
+        if(coll.name != "asteroid-use")
         {
             hit = true;
             theShip.ShipIsHit();
