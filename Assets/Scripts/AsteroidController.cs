@@ -17,8 +17,6 @@ public class AsteroidController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         theShip = FindObjectOfType<ShipHandler>();
-        gameObject.AddComponent<Rigidbody2D>();
-        gameObject.AddComponent<BoxCollider2D>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 	}
 	
@@ -41,9 +39,11 @@ public class AsteroidController : MonoBehaviour {
     {
         //play animation explode
         animator.SetTrigger("Explode");
-        Debug.Log(coll.name);
+
         if(coll.name != "asteroid-use")
         {
+            transform.GetComponent<CircleCollider2D>().enabled = false;
+            gameObject.AddComponent<CircleCollider2D>();
             hit = true;
             theShip.ShipIsHit();
         }
