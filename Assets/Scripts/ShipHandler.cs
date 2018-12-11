@@ -20,6 +20,7 @@ public class ShipHandler : MonoBehaviour
     public GameObject dieText;
     public LandingGearController theLandingGear;
     public Slider healthBar;
+    public Slider altitudeBar;
     public Image Fill;
     public Text speedText;
 
@@ -38,6 +39,7 @@ public class ShipHandler : MonoBehaviour
     public bool hasLanded;
     
     private float distanceToGround;
+    private float startingDistance;
     private float xPosOfLandingPlatform;
     public bool mainThrusterIsOn;
     public bool rightThrusterIsOn;
@@ -53,11 +55,15 @@ public class ShipHandler : MonoBehaviour
         rightThrust = 0f;
         hp = 1;
         healthBar.value = hp;
+        altitudeBar.value = 1;
+        PauseMenu.GameIsPaused = false;
 
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
         theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
-        
+
+        startingDistance = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
+
     }
 
     internal void stopBooster()
@@ -68,71 +74,75 @@ public class ShipHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        //For ship landing!
-        //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        if (!shipActive)
+        if (!PauseMenu.GameIsPaused)
         {
-            
-            if (Input.GetButton("Fire1_P1") || Input.GetButton("Fire1_P2"))
+            if (!shipActive)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-        if (shipActive)
-        {
-            speed += 0.02f;
-            speedText.text = speed.ToString();
-            if (speed > 5)
-            {
-                speedText.color = Color.red;
-            }
-            if (speed < 5)
-            {
-                speedText.color = Color.green;
-            }
-            if (speed > maxSpeed)
-            {
-                speed = maxSpeed;
-            }
-            if (speed < minSpeed)
-            {
-                speed = minSpeed;
-            }
 
-            Health();
-            distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
-
-            hasLanded = theLandingSpot.transform.position.y + 4.8 >= groundCheckPoint.position.y;
-
-            if (!hasLanded)
-            {
-                transform.Translate(0, -Time.deltaTime * speed, 0);
-            }
-
-            if (hasLanded)
-            {
-                if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 9) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 9) && (theLandingGear.open) && (speed < 5))
+                if (Input.GetButton("Restart_P1") || Input.GetButton("Restart_P2"))
                 {
-                    completeText.SetActive(true);
-                    speed = 0;
-                    //Debug.Log("You are safe, Congratz");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
-                else
+            }
+            if (shipActive)
+            {
+                speed += 0.02f;
+                speedText.text = speed.ToString();
+                altitudeBar.value = distanceToGround / startingDistance;
+                if (speed > 5)
                 {
-                    hp = 0;
-                    dieText.SetActive(true);
+                    speedText.color = Color.red;
+                }
+                if (speed < 5)
+                {
+                    speedText.color = Color.green;
+                }
+                if (speed > maxSpeed)
+                {
+                    speed = maxSpeed;
+                }
+                if (speed < minSpeed)
+                {
+                    speed = minSpeed;
+                }
 
-                    if (shipActive)
+                Health();
+                distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
+
+                hasLanded = theLandingSpot.transform.position.y + 4.8 >= groundCheckPoint.position.y;
+
+                if (!hasLanded)
+                {
+                    transform.Translate(0, -Time.deltaTime * speed, 0);
+                }
+
+                if (hasLanded)
+                {
+                    if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 9) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 9) && (theLandingGear.open) && (speed < 5))
                     {
+                        completeText.SetActive(true);
+                        speed = 0;
                         shipActive = false;
-                        BreakShip();
+                        //Debug.Log("You are safe, Congratz");
+                    }
+                    else
+                    {
+                        hp = 0;
                         dieText.SetActive(true);
+
+                        if (shipActive)
+                        {
+                            shipActive = false;
+                            BreakShip();
+                            dieText.SetActive(true);
+                        }
                     }
                 }
             }
         }
+        //For ship landing!
+        //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        
         
     }
     public void MainThrusterOn()
