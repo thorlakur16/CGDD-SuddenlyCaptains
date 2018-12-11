@@ -83,6 +83,7 @@ public class Terminal : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D coll)
     {
+
         if (coll.gameObject.name == "Player1")
         {
             transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
@@ -92,6 +93,7 @@ public class Terminal : MonoBehaviour
             player1.onTerminalUp = false;
             player1.onTerminalBooster = false;
             player1.onTerminalLandingGear = false;
+            player1.disablePushTerminalAnimation();
         }
         if (coll.gameObject.name == "Player2")
         {
@@ -102,6 +104,7 @@ public class Terminal : MonoBehaviour
             player2.onTerminalUp = false;
             player2.onTerminalBooster = false;
             player2.onTerminalLandingGear = false;
+            player2.disablePushTerminalAnimation();
         }
     }
 

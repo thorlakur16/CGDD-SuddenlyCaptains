@@ -39,7 +39,9 @@ public class ShipHandler : MonoBehaviour
     
     private float distanceToGround;
     private float xPosOfLandingPlatform;
-    private bool mainThrusterIsOn;
+    public bool mainThrusterIsOn;
+    public bool rightThrusterIsOn;
+    public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
 
     // Use this for initialization
@@ -145,21 +147,25 @@ public class ShipHandler : MonoBehaviour
     }
     public void LeftThrusterOn()
     {
-        leftThrust = Time.deltaTime * speed;
+        leftThrusterIsOn = true;
+        leftThrust = Time.deltaTime * 5f;
         rightThrust = 0;
     }
     public void LeftThrusterOff()
     {
+        leftThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
     }
     public void RightThrusterOn()
     {
-        rightThrust = -Time.deltaTime * speed;
+        rightThrusterIsOn = true;
+        rightThrust = -Time.deltaTime * 5f;
         leftThrust = 0;
     }
     public void RightThrusterOff()
     {
+        rightThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
     }
