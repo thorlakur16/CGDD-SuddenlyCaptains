@@ -436,7 +436,7 @@ MonoBehaviour:
     m_Bits: 512
   speed: 5
   minSpeed: 1
-  maxSpeed: 20
+  maxSpeed: 15
   hp: 1
   mainThrusterSpeed: 0.1
   hasLanded: 0
@@ -2668,7 +2668,7 @@ GameObject:
   - component: {fileID: 850072848}
   - component: {fileID: 850072847}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SpeedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
