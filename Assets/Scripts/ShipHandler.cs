@@ -148,7 +148,7 @@ public class ShipHandler : MonoBehaviour
     public void LeftThrusterOn()
     {
         leftThrusterIsOn = true;
-        leftThrust = Time.deltaTime * speed;
+        leftThrust = Time.deltaTime * 5f;
         rightThrust = 0;
     }
     public void LeftThrusterOff()
@@ -160,7 +160,7 @@ public class ShipHandler : MonoBehaviour
     public void RightThrusterOn()
     {
         rightThrusterIsOn = true;
-        rightThrust = -Time.deltaTime * speed;
+        rightThrust = -Time.deltaTime * 5f;
         leftThrust = 0;
     }
     public void RightThrusterOff()
