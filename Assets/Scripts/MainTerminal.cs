@@ -15,29 +15,33 @@ public class MainTerminal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log(thePlayer1.onTerminalUp);
         if (thePlayer1.onTerminalUp)
         {
-            if(Input.GetButton("Fire1_P1"))
+            if(Input.GetButtonDown("Fire1_P1"))
             {
-                Debug.Log("p2 pushed terminal boosoter");
-                theShip.MainThrusterOn();
+                if (theShip.mainThrusterIsOn)
+                {
+                    theShip.MainThrusterOff();
+                }
+                else
+                {
+                    theShip.MainThrusterOn();
+                }
             }
-            if (Input.GetButton("Fire2_P1"))
-            {
-                theShip.MainThrusterOff();
-            }
+            
         }
         if (thePlayer2.onTerminalUp)
         {
-            if (Input.GetButton("Fire1_P2"))
+            if (Input.GetButtonDown("Fire1_P2"))
             {
-                Debug.Log("p2 pushed terminal boosoter");
-                theShip.MainThrusterOn();
-            }
-            if (Input.GetButton("Fire2_P2"))
-            {
-                theShip.MainThrusterOff();
+                if (theShip.mainThrusterIsOn)
+                {
+                    theShip.MainThrusterOff();
+                }
+                else
+                {
+                    theShip.MainThrusterOn();
+                }
             }
         }
     }

@@ -47,8 +47,8 @@ public class AsteroidController : MonoBehaviour {
 
         if(coll.name != "asteroid-use")
         {
-            transform.GetComponent<CircleCollider2D>().enabled = false;
-            transform.gameObject.AddComponent<CircleCollider2D>();
+            transform.GetComponent<CircleCollider2D>().isTrigger = false;
+            //transform.gameObject.AddComponent<CircleCollider2D>();
             hit = true;
             theShip.ShipIsHit();
         }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     private string player_nr;
     public Animator animator;
+    public BoosterControl terminalBooster;
     private Rigidbody2D body;
     public float speed;
     public bool onDoor = false;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        terminalBooster = GameObject.FindObjectOfType<BoosterControl>(); ;
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = body.gravityScale;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour {
             float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
             //float horizontal = Input.GetAxis("Horizontal"); //horizontal movement with keyboard
             DoFire1Things();
-            DoFire2Things();
+            //DoFire2Things();
 
 
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
@@ -87,20 +90,40 @@ public class PlayerController : MonoBehaviour {
 
     private void DoFire1Things()
     {
+        
+
         if (Input.GetButton("Fire1_P" + player_nr)) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
+            string terminalName = GetActiveTerminalName();
+            
+            if(terminalName == "BoosterTerminal")
+            {
+                if (this.animator.GetBool("pushTerminal") != true)
+                {
+                    this.animator.SetBool("pushTerminal", true);
+                }
+                gameObject.transform.position = new Vector3(terminalBooster.transform.position.x, transform.position.y, transform.position.z);
+            }
+            
             if (this.animator.GetBool("pushTerminal") != true)
             {
                 this.animator.SetBool("pushTerminal", true);
             }
 
+            if(terminalName == "")
+            {
+                disablePushTerminalAnimation();
+            }
+            
         }
         if (Input.GetButtonUp("Fire1_P" + player_nr) && animator.GetBool("pushTerminal") != false)
         {
             animator.SetBool("pushTerminal", false); //stop playing push terminal animation
+            
         }
     }
 
+    /*
     private void DoFire2Things()
     {
         if (Input.GetButton("Fire2_P" + player_nr)) // the B button
@@ -115,7 +138,7 @@ public class PlayerController : MonoBehaviour {
         {
             animator.SetBool("pushTerminal", false); //stop playing push terminal animation
         }
-    }
+    }*/
 
     void DoAFlip(float horizontal)
     {
@@ -134,5 +157,39 @@ public class PlayerController : MonoBehaviour {
     {
         alive = false;
         animator.SetTrigger("KillSwitch"); //to play death animation
+    }
+
+    public string GetActiveTerminalName()
+    {
+        if (onTerminalBooster)
+        {
+            return "BoosterTerminal";
+        }
+        else if (onTerminalUp)
+        {
+            return "MainTerminal";
+        }
+        else if (onTerminalLandingGear)
+        {
+            return "TerminalLandingGear";
+        }
+        else if (onTerminalLeft)
+        {
+            return "TerminalLeft";
+        }
+        else if (onTerminalRight)
+        {
+            return "TerminalRight";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    public void disablePushTerminalAnimation()
+    {
+        this.animator.SetBool("pushTerminal", false);
+        //this.animator.SetBool("onTerminal", false);
     }
 }

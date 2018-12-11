@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour {
         float currentlytraveled = Mathf.Abs(thePlanetGround.transform.position.y - theShip.transform.position.y);
         float currentDistance = distance - currentlytraveled;
 
-        camera.backgroundColor = new Color(0,0,currentDistance/distance/8,0);
+        camera.backgroundColor = new Color(0,0,currentDistance/distance/5,0);
 
     }
 }
