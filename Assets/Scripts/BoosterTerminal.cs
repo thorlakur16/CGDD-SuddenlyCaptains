@@ -21,7 +21,8 @@ public class BoosterTerminal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log(thePlayer1.onTerminalBooster);
+
+
         if (thePlayer1.onTerminalBooster)
         {
             if (Input.GetButton("Fire1_P1"))

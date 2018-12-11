@@ -96,7 +96,7 @@ public class ShipHandler : MonoBehaviour
             {
                 speed = minSpeed;
             }
-            //Debug.Log(speed);
+
             Health();
             distanceToGround = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
 

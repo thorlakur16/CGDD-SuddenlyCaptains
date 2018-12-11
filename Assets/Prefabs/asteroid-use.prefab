@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4006246852811958}
   - component: {fileID: 212515524655697388}
-  - component: {fileID: 114953676287836568}
   - component: {fileID: 95786697712213216}
+  - component: {fileID: 58995978299448160}
   - component: {fileID: 50362423550798110}
-  - component: {fileID: 61953161790991830}
+  - component: {fileID: 114953676287836568}
   m_Layer: 0
   m_Name: asteroid-use
   m_TagString: InstanceOfAsteroid
@@ -154,8 +154,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61953161790991830
-BoxCollider2D:
+--- !u!58 &58995978299448160
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -167,18 +167,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!95 &95075372936280646
 Animator:
   serializedVersion: 3
@@ -242,9 +232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 95786697712213216}
   theShip: {fileID: 0}
+  target: {fileID: 0}
   rotation: 60
   speed: 2
-  target: {fileID: 0}
+  hide: 0
 --- !u!212 &212299036678199030
 SpriteRenderer:
   m_ObjectHideFlags: 1

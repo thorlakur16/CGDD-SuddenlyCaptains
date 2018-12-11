@@ -6462,7 +6462,6 @@ GameObject:
   - component: {fileID: 1895023347}
   - component: {fileID: 1895023346}
   - component: {fileID: 1895023345}
-  - component: {fileID: 1895023344}
   m_Layer: 0
   m_Name: ladder
   m_TagString: Untagged
@@ -6484,18 +6483,6 @@ Transform:
   m_Father: {fileID: 2094616833}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1895023344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114350247872870222, guid: 472266cc3d1649a41ae4ed391c9a6c9d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1895023342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03498ba04f717b40a77653a971c951c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1895023345
 MonoBehaviour:
   m_ObjectHideFlags: 0
