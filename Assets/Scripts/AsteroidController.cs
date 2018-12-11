@@ -52,6 +52,10 @@ public class AsteroidController : MonoBehaviour {
             hit = true;
             theShip.ShipIsHit();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
         Destroy(gameObject, 0.4f);
     }
 

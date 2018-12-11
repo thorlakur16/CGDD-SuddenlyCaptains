@@ -8,6 +8,7 @@ public class TerminalLandingGearController : MonoBehaviour {
     public PlayerController thePlayer2;
     public LandingGearController landingGear1;
     public LandingGearController landingGear2;
+    public bool landingGearIsDown;
 	// Use this for initialization
 	void Start () {
         foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
@@ -33,6 +34,7 @@ public class TerminalLandingGearController : MonoBehaviour {
                 landingGear2 = gear;
             }
         }
+        landingGearIsDown = false;
     }
 
     // Update is called once per frame
@@ -40,30 +42,39 @@ public class TerminalLandingGearController : MonoBehaviour {
     {
         if (thePlayer1.onTerminalLandingGear)
         {
-            if (Input.GetButton("Fire1_P1"))
+            if (Input.GetButtonDown("Fire1_P1"))
             {
-                landingGear1.LandingGearDown();
-                landingGear2.LandingGearDown();
-            }
-            if (Input.GetButton("Fire2_P1"))
-            {
-                landingGear1.LandingGearUp();
-                landingGear2.LandingGearUp();
+                if (landingGearIsDown)
+                {
+                    landingGearIsDown = false;
+                    landingGear1.LandingGearUp();
+                    landingGear2.LandingGearUp();
+                }
+                else
+                {
+                    landingGearIsDown = true;
+                    landingGear1.LandingGearDown();
+                    landingGear2.LandingGearDown();
+                }
             }
         }
         if (thePlayer2.onTerminalLandingGear)
         {
-            if (Input.GetButton("Fire1_P2"))
+            if (Input.GetButtonDown("Fire1_P2"))
             {
-                landingGear1.LandingGearDown();
-                landingGear2.LandingGearDown();
-            }
-            if (Input.GetButton("Fire2_P2"))
-            {
-                landingGear1.LandingGearUp();
-                landingGear2.LandingGearUp();
+                if (landingGearIsDown)
+                {
+                    landingGearIsDown = false;
+                    landingGear1.LandingGearUp();
+                    landingGear2.LandingGearUp();
+                }
+                else
+                {
+                    landingGearIsDown = true;
+                    landingGear1.LandingGearDown();
+                    landingGear2.LandingGearDown();
+                }
             }
         }
-
     }
 }
