@@ -22,29 +22,7 @@ public class RepeatingBackground : MonoBehaviour {
 	}
 
     private void RepositionBackground()
-    {
-        float thisX = transform.position.x;
-        float shipX = theShip.transform.position.x;
-        float distance;
-        if (thisX > shipX)
-        {
-            distance = thisX - shipX;
-        }
-        else
-        {
-            distance = shipX - thisX;
-        }
-
-        Vector2 spaceOffset = new Vector2(0f, 0f);
-        
-        if(thisX < shipX)
-        {
-            spaceOffset = new Vector2((thisX + distance), -(verticalHeight * 2f));
-        }
-        else
-        {
-            spaceOffset = new Vector2((thisX - distance), -(verticalHeight * 2f));
-        }
-        transform.position = (Vector2)transform.position + spaceOffset;
+    {        
+        transform.position = new Vector2(theShip.transform.position.x, transform.position.y -verticalHeight * 2f);
     }
 }

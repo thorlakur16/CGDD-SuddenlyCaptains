@@ -33,6 +33,11 @@ public class AsteroidController : MonoBehaviour {
 
             transform.Rotate(0, 0, Time.deltaTime * rotation);
         }
+        
+        if (transform.position.y > theShip.transform.position.y+20f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
@@ -43,12 +48,11 @@ public class AsteroidController : MonoBehaviour {
         if(coll.name != "asteroid-use")
         {
             transform.GetComponent<CircleCollider2D>().enabled = false;
-            gameObject.AddComponent<CircleCollider2D>();
+            transform.gameObject.AddComponent<CircleCollider2D>();
             hit = true;
             theShip.ShipIsHit();
         }
         Destroy(gameObject, 0.4f);
-        //
     }
 
     //For arrow indicator

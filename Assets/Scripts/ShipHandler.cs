@@ -55,6 +55,7 @@ public class ShipHandler : MonoBehaviour
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
         theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
+        
     }
 
     internal void stopBooster()
@@ -80,6 +81,7 @@ public class ShipHandler : MonoBehaviour
         if (shipActive)
         {
             speed += 0.02f;
+            speedText.text = speed.ToString();
             if (speed > 5)
             {
                 speedText.color = Color.red;
