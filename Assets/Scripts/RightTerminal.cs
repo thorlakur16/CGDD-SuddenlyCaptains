@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RightTerminal : MonoBehaviour {
     public ShipHandler theShip;
-    public GameObject boosterRight;
-    public GameObject boosterLeft;
+    public Animator animator;
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
     // Use this for initialization
@@ -20,17 +19,16 @@ public class RightTerminal : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1_P1"))
             {
+                theShip.leftThrusterIsOn = false;
                 if (theShip.rightThrusterIsOn)
                 {
                     theShip.RightThrusterOff();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
-                    theShip.RightThrusterOn();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    theShip.RightThrusterOn();                    
+                    animator.SetBool("TerminalOn", true);
                 }
             }
 
@@ -42,14 +40,12 @@ public class RightTerminal : MonoBehaviour {
                 if (theShip.rightThrusterIsOn)
                 {
                     theShip.RightThrusterOff();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
                     theShip.RightThrusterOn();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    animator.SetBool("TerminalOn", true);
                 }
             }
         }

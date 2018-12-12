@@ -6,8 +6,7 @@ public class LeftTerminal : MonoBehaviour {
     public ShipHandler theShip;
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
-    public GameObject boosterLeft;
-    public GameObject boosterRight;
+    public Animator animator;
     // Use this for initialization
     void Start () {
 		
@@ -20,17 +19,16 @@ public class LeftTerminal : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1_P1"))
             {
+                theShip.rightThrusterIsOn = false;
                 if (theShip.leftThrusterIsOn)
                 {
                     theShip.LeftThrusterOff();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
                     theShip.LeftThrusterOn();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+                    animator.SetBool("TerminalOn", true);
                 }
             }
         }
@@ -41,14 +39,12 @@ public class LeftTerminal : MonoBehaviour {
                 if (theShip.leftThrusterIsOn)
                 {
                     theShip.LeftThrusterOff();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
                     theShip.LeftThrusterOn();
-                    boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
-                    boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+                    animator.SetBool("TerminalOn", true);
                 }
             }
         }
