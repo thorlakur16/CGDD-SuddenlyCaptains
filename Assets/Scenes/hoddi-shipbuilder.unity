@@ -660,6 +660,9 @@ MonoBehaviour:
   hp: 1
   mainThrusterSpeed: 0.1
   hasLanded: 0
+  mainThrusterIsOn: 0
+  rightThrusterIsOn: 0
+  leftThrusterIsOn: 0
 --- !u!4 &72666116
 Transform:
   m_ObjectHideFlags: 0
@@ -701,6 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 171215782}
+  terminalBooster: {fileID: 0}
   speed: 2
   onDoor: 0
   onTerminal: 0
@@ -1324,6 +1328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2031362776}
+  terminalBooster: {fileID: 0}
   speed: 2
   onDoor: 0
   onTerminal: 0
@@ -2174,6 +2179,7 @@ GameObject:
   - component: {fileID: 500141204}
   - component: {fileID: 500141205}
   - component: {fileID: 500141203}
+  - component: {fileID: 500141206}
   m_Layer: 5
   m_Name: AudioMenu
   m_TagString: Untagged
@@ -2227,7 +2233,7 @@ RectTransform:
   - {fileID: 558073634}
   - {fileID: 584003201}
   m_Father: {fileID: 1819796164}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2241,6 +2247,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 500141202}
   m_CullTransparentMesh: 0
+--- !u!114 &500141206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 500141202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8180709cc5291034aa2f8e1138f19981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1731974568}
+  es: {fileID: 686035517}
 --- !u!1 &525173711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,6 +3437,7 @@ MonoBehaviour:
   thePlayer2: {fileID: 0}
   landingGear1: {fileID: 0}
   landingGear2: {fileID: 0}
+  landingGearIsDown: 0
 --- !u!1 &643411551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4524,7 +4544,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2061137401}
+      - m_Target: {fileID: 0}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -10020,6 +10040,7 @@ GameObject:
   - component: {fileID: 1731974569}
   - component: {fileID: 1731974571}
   - component: {fileID: 1731974570}
+  - component: {fileID: 1731974572}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -10043,7 +10064,7 @@ RectTransform:
   - {fileID: 849317064}
   - {fileID: 411171415}
   m_Father: {fileID: 1819796164}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10084,6 +10105,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1731974568}
   m_CullTransparentMesh: 0
+--- !u!114 &1731974572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1731974568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8180709cc5291034aa2f8e1138f19981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1731974568}
+  es: {fileID: 2103967975}
 --- !u!1 &1738403696
 GameObject:
   m_ObjectHideFlags: 0
@@ -10442,10 +10476,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1731974569}
   - {fileID: 2061137403}
   - {fileID: 500141204}
   - {fileID: 2035264153}
-  - {fileID: 1731974569}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10466,6 +10500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1731974568}
+  es: {fileID: 2103967975}
 --- !u!1001 &1836092885
 Prefab:
   m_ObjectHideFlags: 0
@@ -11920,6 +11955,7 @@ GameObject:
   - component: {fileID: 2035264153}
   - component: {fileID: 2035264155}
   - component: {fileID: 2035264154}
+  - component: {fileID: 2035264156}
   m_Layer: 5
   m_Name: ContolsMenu
   m_TagString: Untagged
@@ -11941,7 +11977,7 @@ RectTransform:
   - {fileID: 1364057691}
   - {fileID: 745206312}
   m_Father: {fileID: 1819796164}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11982,6 +12018,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2035264152}
   m_CullTransparentMesh: 0
+--- !u!114 &2035264156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035264152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8180709cc5291034aa2f8e1138f19981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1731974568}
+  es: {fileID: 1907503971}
 --- !u!1 &2051739102
 GameObject:
   m_ObjectHideFlags: 0
@@ -12131,6 +12180,7 @@ GameObject:
   - component: {fileID: 2061137403}
   - component: {fileID: 2061137405}
   - component: {fileID: 2061137404}
+  - component: {fileID: 2061137402}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -12138,6 +12188,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &2061137402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2061137401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8180709cc5291034aa2f8e1138f19981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1731974568}
+  es: {fileID: 1217378634}
 --- !u!224 &2061137403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12153,7 +12216,7 @@ RectTransform:
   - {fileID: 2018850860}
   - {fileID: 1718619144}
   m_Father: {fileID: 1819796164}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12285,7 +12348,7 @@ GameObject:
   - component: {fileID: 2103967975}
   - component: {fileID: 2103967974}
   m_Layer: 0
-  m_Name: EventSystem (1)
+  m_Name: EventSystemPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12321,7 +12384,7 @@ MonoBehaviour:
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_ForceModuleActive: 1
 --- !u!114 &2103967975
 MonoBehaviour:
   m_ObjectHideFlags: 0
