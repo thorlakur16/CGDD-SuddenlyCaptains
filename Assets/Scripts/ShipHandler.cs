@@ -89,7 +89,7 @@ public class ShipHandler : MonoBehaviour
             }
             if (shipActive)
             {
-                //speed += 0.02f;
+                speed += 0.02f;
                 speedText.text = speed.ToString();
                 altitudeBar.value = distanceToGround / startingDistance;
                 if (speed > 5)

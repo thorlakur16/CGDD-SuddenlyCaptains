@@ -27,10 +27,12 @@ public class BoosterTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P1"))
             {
+                boosterMain.playSound();
                 theShip.StartBooster();
             }
             if (Input.GetButtonUp("Fire1_P1"))
             {
+                boosterMain.stopSound();
                 theShip.StopBooster();
             }
         }
