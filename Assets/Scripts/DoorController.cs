@@ -13,8 +13,15 @@ public class DoorController : MonoBehaviour {
     public float force = 1f;
     public ShipHandler theShip;
 
-	// Use this for initialization
-	void Start () {
+
+    public AudioClip impact;
+    AudioSource audioSource;
+    
+
+    // Use this for initialization
+    void Start () {
+
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponentInParent<Animator>();
 	}
 	
@@ -35,19 +42,12 @@ public class DoorController : MonoBehaviour {
         }
         if (thePlayer1.onDoor)
         {
-            if (!theShip.hasLanded)
-            {
-                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
-                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true; //red
-            }
-            else
-            {
-                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true; //green
-                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
-            }
+            
 
-            if (Input.GetButton("Fire1_P1"))
+            if (Input.GetButtonDown("Fire1_P1"))
             {
+
+                audioSource.PlayOneShot(impact, 0.7F);
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
                 timeOpen = 50;
@@ -66,18 +66,11 @@ public class DoorController : MonoBehaviour {
 
         if (thePlayer2.onDoor)
         {
-            if (!theShip.hasLanded)
+            
+            if (Input.GetButtonDown("Fire1_P2"))
             {
-                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
-                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true; //red
-            }
-            else
-            {
-                transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true; //green
-                transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
-            }
-            if (Input.GetButton("Fire1_P2"))
-            {
+
+                audioSource.PlayOneShot(impact, 0.7F);
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
                 timeOpen = 60;
@@ -124,8 +117,6 @@ public class DoorController : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collision)
     {
         
-        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false; //green
-        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false; //red
         
         if (collision.gameObject.name == "Player1")
         {
