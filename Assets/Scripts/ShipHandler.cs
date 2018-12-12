@@ -15,6 +15,9 @@ public class ShipHandler : MonoBehaviour
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
 
+    public GameObject leftTerminal;
+    public GameObject rightTerminal;
+
     public GameObject theLandingSpot;
     public GameObject completeText;
     public GameObject dieText;
@@ -86,7 +89,7 @@ public class ShipHandler : MonoBehaviour
             }
             if (shipActive)
             {
-                speed += 0.02f;
+                //speed += 0.02f;
                 speedText.text = speed.ToString();
                 altitudeBar.value = distanceToGround / startingDistance;
                 if (speed > 5)
@@ -160,24 +163,45 @@ public class ShipHandler : MonoBehaviour
         leftThrusterIsOn = true;
         leftThrust = Time.deltaTime * 5f;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", true);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
     }
     public void LeftThrusterOff()
     {
         leftThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+
     }
     public void RightThrusterOn()
     {
         rightThrusterIsOn = true;
         rightThrust = -Time.deltaTime * 5f;
         leftThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", true);
     }
     public void RightThrusterOff()
     {
         rightThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
     }
     public void StartBooster()
     {

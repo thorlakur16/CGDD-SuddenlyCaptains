@@ -6,10 +6,11 @@ public class MainTerminal : MonoBehaviour {
     public ShipHandler theShip;
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
+    public Animator animator;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -22,10 +23,12 @@ public class MainTerminal : MonoBehaviour {
                 if (theShip.mainThrusterIsOn)
                 {
                     theShip.MainThrusterOff();
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
                     theShip.MainThrusterOn();
+                    animator.SetBool("TerminalOn", true);
                 }
             }
             
@@ -37,10 +40,12 @@ public class MainTerminal : MonoBehaviour {
                 if (theShip.mainThrusterIsOn)
                 {
                     theShip.MainThrusterOff();
+                    animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
                     theShip.MainThrusterOn();
+                    animator.SetBool("TerminalOn", true);
                 }
             }
         }
