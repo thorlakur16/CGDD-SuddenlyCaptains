@@ -24,10 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     public float boosterX;
     public float boosterY;
-
-    public AudioClip thrusterClip;
-    public AudioSource thrusterSource;
-
+    
     // Use this for initialization
     void Start () {
 
@@ -37,7 +34,6 @@ public class PlayerController : MonoBehaviour {
         gravityScale = body.gravityScale;
         boosterX = 0;
         boosterY = 0;
-        thrusterSource.clip = thrusterClip;
     }
 	// Update is called once per frame
 	void Update () {
@@ -105,7 +101,6 @@ public class PlayerController : MonoBehaviour {
                 if (this.animator.GetBool("pushTerminal") != true)
                 {
                     this.animator.SetBool("pushTerminal", true);
-                    thrusterSource.Play();
                 }
                 gameObject.transform.position = new Vector3(terminalBooster.transform.position.x, transform.position.y, transform.position.z);
             }
