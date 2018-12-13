@@ -16,12 +16,15 @@ public class AsteroidController : MonoBehaviour {
     private bool hit = false;
 	// Use this for initialization
 	void Start () {
-        theShip = FindObjectOfType<ShipHandler>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+    private void Awake()
+    {
+        theShip = FindObjectOfType<ShipHandler>();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (hit)
         {

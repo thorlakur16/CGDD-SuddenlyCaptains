@@ -12,6 +12,7 @@ public class DoorController : MonoBehaviour {
     public float timeOpen = 0f;
     public float force = 1f;
     public ShipHandler theShip;
+    private bool doorOpen;
 
 
     public AudioClip impact;
@@ -46,9 +47,9 @@ public class DoorController : MonoBehaviour {
 
             if (Input.GetButtonDown("Fire1_P1"))
             {
-
                 audioSource.PlayOneShot(impact, 0.7F);
                 animator.SetTrigger("openDoor");
+                doorOpen = true;
                 animator.ResetTrigger("closeDoor");
                 timeOpen = 50;
                 theDoor.GetComponent<BoxCollider2D>().enabled = false;
@@ -69,10 +70,10 @@ public class DoorController : MonoBehaviour {
             
             if (Input.GetButtonDown("Fire1_P2"))
             {
-
                 audioSource.PlayOneShot(impact, 0.7F);
                 animator.SetTrigger("openDoor");
                 animator.ResetTrigger("closeDoor");
+                doorOpen = true;
                 timeOpen = 60;
                 theDoor.GetComponent<BoxCollider2D>().enabled = false;
                 //check if ship has landed
@@ -87,11 +88,16 @@ public class DoorController : MonoBehaviour {
         }
        
 
-        if (timeOpen == 0)
+        if (timeOpen == 0 && doorOpen == true)
         {
             theDoor.GetComponent<BoxCollider2D>().enabled = true;
-            animator.SetTrigger("closeDoor");
-            animator.ResetTrigger("openDoor");
+            if(doorOpen == true)
+            {
+                doorOpen = false;
+                animator.SetTrigger("closeDoor");
+                animator.ResetTrigger("openDoor");
+                audioSource.PlayOneShot(impact, 0.5F);
+            }
         }
 
 
