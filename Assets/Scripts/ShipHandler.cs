@@ -57,8 +57,10 @@ public class ShipHandler : MonoBehaviour
     public bool rightThrusterIsOn;
     public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
+    public float speedTick = 0.02f;
 
     public AudioClip boosterSound;
+    public AudioClip shipExplodingSound;
     AudioSource audioSource;
     public static PubNub pubnub;
 
@@ -103,7 +105,8 @@ public class ShipHandler : MonoBehaviour
             }
             if (shipActive)
             {
-                speed += 0.02f;
+                checkSpeedTick();
+                speed += speedTick;
                 speedText.text = speed.ToString();
                 altitudeBar.value = distanceToGround / startingDistance;
 
@@ -150,9 +153,10 @@ public class ShipHandler : MonoBehaviour
                         completeText.SetActive(true);
                         speed = 0;
                         shipActive = false;
+
                         PublishScore();
                         Leaderboard.SetActive(true);
-                        //Debug.Log("You are safe, Congratz");          
+
                     }
                     else
                     {
@@ -171,6 +175,36 @@ public class ShipHandler : MonoBehaviour
             }
         } 
     }
+
+    private void checkSpeedTick()
+    {
+        float testY = transform.position.y;
+        if (testY > 550)
+        {
+            speedTick = 0.01f;
+        }
+        else if (testY < 550 &&  testY > 450)
+        {
+            speedTick = 0.02f;
+        }
+        else if (testY < 450 && testY > 350)
+        {
+            speedTick = 0.03f;
+        }
+        else if (testY < 350 && testY > 250)
+        {
+            speedTick = 0.04f;
+        }
+        else if (testY < 250 && testY > 150)
+        {
+            speedTick = 0.05f;
+        }
+        else if (testY < 150)
+        {
+            speedTick = 0.06f;
+        }
+    }
+
     public void MainThrusterOn()
     {
         mainThruster.GetComponent<Animator>().SetBool("thrusterOn", true);
@@ -288,6 +322,7 @@ public class ShipHandler : MonoBehaviour
 
     public void BreakShip()
     {
+        audioSource.PlayOneShot(shipExplodingSound, 1F);
         float force = 20f;
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
         GameObject[] decors = GameObject.FindGameObjectsWithTag("Decor");
