@@ -700,11 +700,6 @@ Prefab:
       propertyPath: m_Name
       value: theShip
       objectReference: {fileID: 0}
-    - target: {fileID: 114911868721827660, guid: b95e9ec2be42cef42886d7174b5e712d,
-        type: 2}
-      propertyPath: shipExplodingSound
-      value: 
-      objectReference: {fileID: 8300000, guid: c82a8ade9d722b947b2997d60c3658e3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95e9ec2be42cef42886d7174b5e712d, type: 2}
   m_IsPrefabAsset: 0
