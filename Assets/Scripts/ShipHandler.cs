@@ -34,6 +34,7 @@ public class ShipHandler : MonoBehaviour
     private float timer;
     private float totalPenalty;
     private float totalTime;
+    public GameObject Leaderboard;
 
     public bool shipActive = true;
 
@@ -73,6 +74,7 @@ public class ShipHandler : MonoBehaviour
         healthBar.value = hp;
         altitudeBar.value = 1;
         PauseMenu.GameIsPaused = false;
+        Leaderboard.SetActive(false);
 
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
@@ -149,6 +151,7 @@ public class ShipHandler : MonoBehaviour
                         speed = 0;
                         shipActive = false;
                         PublishScore();
+                        Leaderboard.SetActive(true);
                         //Debug.Log("You are safe, Congratz");          
                     }
                     else
@@ -161,6 +164,7 @@ public class ShipHandler : MonoBehaviour
                             shipActive = false;
                             BreakShip();
                             dieText.SetActive(true);
+                            Leaderboard.SetActive(true);
                         }
                     }
                 }

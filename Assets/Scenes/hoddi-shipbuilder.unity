@@ -1213,6 +1213,115 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &215456044
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 358222339}
+    m_Modifications:
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 787.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 189.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 270.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224035272851259072, guid: c0f93b4239735564190492ed751697a2,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490270544729526, guid: c0f93b4239735564190492ed751697a2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0f93b4239735564190492ed751697a2, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &215456045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1490270544729526, guid: c0f93b4239735564190492ed751697a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 215456044}
 --- !u!1 &220212886
 GameObject:
   m_ObjectHideFlags: 0
@@ -12311,6 +12420,7 @@ MonoBehaviour:
   speedText: {fileID: 850072847}
   timerText: {fileID: 440467559}
   penaltyText: {fileID: 936690546}
+  Leaderboard: {fileID: 215456045}
   shipActive: 1
   groundCheckPoint: {fileID: 1374121448}
   middleOfShip: {fileID: 1154338215}
