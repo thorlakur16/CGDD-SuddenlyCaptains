@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using PubNubAPI;
 
 public class ShipHandler : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class ShipHandler : MonoBehaviour
 
     public GameObject theLandingSpot;
     public GameObject completeText;
+    public TextMeshPro completedText;
     public GameObject dieText;
     public LandingGearController theLandingGear;
     public Slider healthBar;
@@ -29,6 +32,8 @@ public class ShipHandler : MonoBehaviour
     public Text timerText;
     public Text penaltyText;
     private float timer;
+    private float totalPenalty;
+    private float totalTime;
 
     public bool shipActive = true;
 
@@ -52,11 +57,10 @@ public class ShipHandler : MonoBehaviour
     public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
 
-<<<<<<< HEAD
-=======
     public AudioClip boosterSound;
     AudioSource audioSource;
->>>>>>> a5ff185330b5509bd607467d782c697928f31cdb
+    public static PubNub pubnub;
+
 
     // Use this for initialization
     void Start()
@@ -138,10 +142,14 @@ public class ShipHandler : MonoBehaviour
                 {
                     if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 9) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 9) && (theLandingGear.open) && (speed < 5))
                     {
+                        totalTime = timer + totalPenalty;
+                        TimeSpan u = TimeSpan.FromSeconds(totalTime);
+                        completedText.text = "You Landed \n Your time was " + string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds) + ". \nPress Y to restart";
                         completeText.SetActive(true);
                         speed = 0;
                         shipActive = false;
-                        //Debug.Log("You are safe, Congratz");
+                        PublishScore();
+                        //Debug.Log("You are safe, Congratz");          
                     }
                     else
                     {
@@ -219,9 +227,6 @@ public class ShipHandler : MonoBehaviour
     {
         if (!hasLanded)
         {
-            Debug.Log("right: " + rightThrust);
-            Debug.Log("left: " + leftThrust);
-
             if (rightThrust + leftThrust < 0)
             {
                 if (mainThrusterIsOn)
@@ -397,13 +402,55 @@ public class ShipHandler : MonoBehaviour
     }
     public void ShipIsHit()
     {
+        
         hp -= 0.10f;
-        timer += 10;
+        //timer += 10;
+        totalPenalty += 10;
 
         penaltyText.color = Color.red;
-        penaltyText.text = "+10";
+        penaltyText.text = "+" + totalPenalty;
         
         //penaltyText.text = "";
+    }
+    public void PublishScore()
+    {
+        Debug.Log(Name.playerName);
+        PNConfiguration pnConfiguration = new PNConfiguration();
+        pnConfiguration.PublishKey = "pub-c-7536c573-b8fe-4101-bdb9-fea28d3cd6a9";
+        pnConfiguration.SubscribeKey = "sub-c-8c16aaf2-fef4-11e8-9231-4abfa1972993";
+
+        pnConfiguration.LogVerbosity = PNLogVerbosity.BODY;
+        pnConfiguration.UUID = UnityEngine.Random.Range(0f, 999999f).ToString();
+        Debug.Log("1 stop");
+        pubnub = new PubNub(pnConfiguration);
+
+        Debug.Log("2 stop");
+        totalTime = timer + totalPenalty;
+        TimeSpan u = TimeSpan.FromSeconds(totalTime);
+        var usernametext = Name.playerName;// this would be set somewhere else in the code
+        var scoretext = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
+        Debug.Log("3 stop");
+        MyClass2 myObject = new MyClass2();
+        myObject.username = Name.playerName;
+        myObject.score = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
+        string json = JsonUtility.ToJson(myObject);
+        Debug.Log("4 stop");
+        pubnub.Publish()
+            .Channel("my_channel")
+            .Message(json)
+            .Async((result, status) => {
+                if (!status.Error)
+                {
+                    Debug.Log(string.Format("Publish Timetoken: {0}", result.Timetoken));
+                }
+                else
+                {
+                    Debug.Log(status.Error);
+                    Debug.Log(status.ErrorData.Info);
+                }
+            });
+        //Output this to console when the Button is clicked
+        Debug.Log("You have clicked the button!");
     }
 
 }

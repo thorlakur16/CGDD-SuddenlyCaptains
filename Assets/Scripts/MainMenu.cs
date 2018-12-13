@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+public static class Name
+{
+    public static string playerName;
 
+}
 public class MainMenu : MonoBehaviour {
     public EventSystem es;
     private GameObject storeSelected;
+    public InputField playerNameInput;
+    
     // Use this for initialization
     void Start()
     {
@@ -29,6 +36,14 @@ public class MainMenu : MonoBehaviour {
         }
 
     }
+    public void setPlayerName()
+    {
+        Name.playerName = playerNameInput.text;
+        if(Name.playerName != "")
+        {
+            PlayGame();
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -41,3 +56,4 @@ public class MainMenu : MonoBehaviour {
 
 
 }
+
