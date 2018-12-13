@@ -58,7 +58,7 @@ public class TerminalLandingGearController : MonoBehaviour {
                 }
                 else
                 {
-                    audioSource.clip = landingGearDownSound;
+                    //audioSource.clip = landingGearDownSound;
                     audioSource.PlayOneShot(landingGearDownSound, 0.7F);
                     landingGearIsDown = true;
                     landingGear1.LandingGearDown();

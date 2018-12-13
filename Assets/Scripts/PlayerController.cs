@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 
     public float boosterX;
     public float boosterY;
-
+    
     // Use this for initialization
     void Start () {
         audioSource = GetComponent<AudioSource>();

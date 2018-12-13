@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using PubNubAPI;
 
 public class ShipHandler : MonoBehaviour
 {
@@ -20,12 +22,19 @@ public class ShipHandler : MonoBehaviour
 
     public GameObject theLandingSpot;
     public GameObject completeText;
+    public TextMeshPro completedText;
     public GameObject dieText;
     public LandingGearController theLandingGear;
     public Slider healthBar;
     public Slider altitudeBar;
     public Image Fill;
     public Text speedText;
+    public Text timerText;
+    public Text penaltyText;
+    private float timer;
+    private float totalPenalty;
+    private float totalTime;
+    public GameObject Leaderboard;
 
     public bool shipActive = true;
 
@@ -53,6 +62,8 @@ public class ShipHandler : MonoBehaviour
     public AudioClip boosterSound;
     public AudioClip shipExplodingSound;
     AudioSource audioSource;
+    public static PubNub pubnub;
+
 
     // Use this for initialization
     void Start()
@@ -65,6 +76,7 @@ public class ShipHandler : MonoBehaviour
         healthBar.value = hp;
         altitudeBar.value = 1;
         PauseMenu.GameIsPaused = false;
+        Leaderboard.SetActive(false);
 
         xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
@@ -97,6 +109,7 @@ public class ShipHandler : MonoBehaviour
                 speed += speedTick;
                 speedText.text = speed.ToString();
                 altitudeBar.value = distanceToGround / startingDistance;
+
                 if (speed > 5)
                 {
                     speedText.color = Color.red;
@@ -122,15 +135,28 @@ public class ShipHandler : MonoBehaviour
                 if (!hasLanded)
                 {
                     transform.Translate(0, -Time.deltaTime * speed, 0);
+
+                    //Time display
+                    timer += Time.deltaTime;
+                    timerText.color = Color.white;
+                    TimeSpan t = TimeSpan.FromSeconds(timer);
+                    timerText.text = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
                 }
 
                 if (hasLanded)
                 {
                     if ((groundCheckPoint.transform.position.x > xPosOfLandingPlatform - 9) && (groundCheckPoint.transform.position.x < xPosOfLandingPlatform + 9) && (theLandingGear.open) && (speed < 5))
                     {
+                        totalTime = timer + totalPenalty;
+                        TimeSpan u = TimeSpan.FromSeconds(totalTime);
+                        completedText.text = "You Landed \n Your time was " + string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds) + ". \nPress Y to restart";
                         completeText.SetActive(true);
                         speed = 0;
                         shipActive = false;
+
+                        PublishScore();
+                        Leaderboard.SetActive(true);
+
                     }
                     else
                     {
@@ -142,6 +168,7 @@ public class ShipHandler : MonoBehaviour
                             shipActive = false;
                             BreakShip();
                             dieText.SetActive(true);
+                            Leaderboard.SetActive(true);
                         }
                     }
                 }
@@ -414,7 +441,55 @@ public class ShipHandler : MonoBehaviour
     }
     public void ShipIsHit()
     {
+        
         hp -= 0.10f;
+        //timer += 10;
+        totalPenalty += 10;
+
+        penaltyText.color = Color.red;
+        penaltyText.text = "+" + totalPenalty;
+        
+        //penaltyText.text = "";
+    }
+    public void PublishScore()
+    {
+        Debug.Log(Name.playerName);
+        PNConfiguration pnConfiguration = new PNConfiguration();
+        pnConfiguration.PublishKey = "pub-c-7536c573-b8fe-4101-bdb9-fea28d3cd6a9";
+        pnConfiguration.SubscribeKey = "sub-c-8c16aaf2-fef4-11e8-9231-4abfa1972993";
+
+        pnConfiguration.LogVerbosity = PNLogVerbosity.BODY;
+        pnConfiguration.UUID = UnityEngine.Random.Range(0f, 999999f).ToString();
+        Debug.Log("1 stop");
+        pubnub = new PubNub(pnConfiguration);
+
+        Debug.Log("2 stop");
+        totalTime = timer + totalPenalty;
+        TimeSpan u = TimeSpan.FromSeconds(totalTime);
+        var usernametext = Name.playerName;// this would be set somewhere else in the code
+        var scoretext = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
+        Debug.Log("3 stop");
+        MyClass2 myObject = new MyClass2();
+        myObject.username = Name.playerName;
+        myObject.score = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
+        string json = JsonUtility.ToJson(myObject);
+        Debug.Log("4 stop");
+        pubnub.Publish()
+            .Channel("my_channel")
+            .Message(json)
+            .Async((result, status) => {
+                if (!status.Error)
+                {
+                    Debug.Log(string.Format("Publish Timetoken: {0}", result.Timetoken));
+                }
+                else
+                {
+                    Debug.Log(status.Error);
+                    Debug.Log(status.ErrorData.Info);
+                }
+            });
+        //Output this to console when the Button is clicked
+        Debug.Log("You have clicked the button!");
     }
 
 }
