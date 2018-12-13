@@ -14,6 +14,9 @@ public class ShipHandler : MonoBehaviour
     public GameObject theShip;
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
+    
+    public GameObject leftTerminal;
+    public GameObject rightTerminal;
 
     public GameObject theLandingSpot;
     public GameObject completeText;
@@ -49,6 +52,11 @@ public class ShipHandler : MonoBehaviour
     public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
 
+<<<<<<< HEAD
+=======
+    public AudioClip boosterSound;
+    AudioSource audioSource;
+>>>>>>> a5ff185330b5509bd607467d782c697928f31cdb
 
     // Use this for initialization
     void Start()
@@ -67,7 +75,7 @@ public class ShipHandler : MonoBehaviour
         theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
 
         startingDistance = Mathf.Abs(groundCheckPoint.position.y - theLandingSpot.transform.position.y);
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     internal void stopBooster()
@@ -82,7 +90,6 @@ public class ShipHandler : MonoBehaviour
         {
             if (!shipActive)
             {
-
                 if (Input.GetButton("Restart_P1") || Input.GetButton("Restart_P2"))
                 {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -150,11 +157,7 @@ public class ShipHandler : MonoBehaviour
                     }
                 }
             }
-        }
-        //For ship landing!
-        //hasLanded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        
-        
+        } 
     }
     public void MainThrusterOn()
     {
@@ -171,29 +174,54 @@ public class ShipHandler : MonoBehaviour
         leftThrusterIsOn = true;
         leftThrust = Time.deltaTime * 5f;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", true);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", true);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        
     }
     public void LeftThrusterOff()
     {
         leftThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        
     }
     public void RightThrusterOn()
     {
         rightThrusterIsOn = true;
         rightThrust = -Time.deltaTime * 5f;
         leftThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", true);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", true);
     }
     public void RightThrusterOff()
     {
         rightThrusterIsOn = false;
         leftThrust = 0;
         rightThrust = 0;
+
+        boosterRight.GetComponent<Animator>().SetBool("boosterOn", false);
+        boosterLeft.GetComponent<Animator>().SetBool("boosterOn", false);
+        leftTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
+        rightTerminal.GetComponent<Animator>().SetBool("TerminalOn", false);
     }
     public void StartBooster()
     {
         if (!hasLanded)
         {
+            Debug.Log("right: " + rightThrust);
+            Debug.Log("left: " + leftThrust);
+
             if (rightThrust + leftThrust < 0)
             {
                 if (mainThrusterIsOn)
@@ -205,6 +233,10 @@ public class ShipHandler : MonoBehaviour
                 }
                 boosterRight.GetComponent<Animator>().SetBool("boosterActive", true);
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
             }
             if (rightThrust + leftThrust > 0)
             {
@@ -217,6 +249,10 @@ public class ShipHandler : MonoBehaviour
                 }
                 boosterLeft.GetComponent<Animator>().SetBool("boosterActive", true);
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
             }
             if (rightThrust + leftThrust == 0)
             {
@@ -228,16 +264,9 @@ public class ShipHandler : MonoBehaviour
                     speed -= mainThrusterSpeed;
                     theShip.transform.Translate(0, 0, 0);
                 }
-
                 theShip.transform.Translate(rightThrust + leftThrust, 0, 0);
             }
         }
-
-        
-
-        //boosterOn = true;
-        //theShip.transform.Translate(x, y, z); //move ship
-
     }
 
     public void StopBooster()
@@ -245,6 +274,7 @@ public class ShipHandler : MonoBehaviour
         mainThruster.GetComponent<Animator>().SetBool("thrusterActive", false);
         boosterRight.GetComponent<Animator>().SetBool("boosterActive", false);
         boosterLeft.GetComponent<Animator>().SetBool("boosterActive", false);
+        audioSource.Stop();
     }
 
     public void BreakShip()

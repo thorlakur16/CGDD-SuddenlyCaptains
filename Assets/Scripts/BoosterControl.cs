@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BoosterControl : MonoBehaviour {
 
+    public AudioClip impact;
+    AudioSource audioSource;
 
     // Use this for initialization
     void Start () {
-
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -15,7 +17,21 @@ public class BoosterControl : MonoBehaviour {
 		
 	}
 
-    
+    public void playSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            Debug.Log("play");
+            audioSource.Play();
+        }
+        
+    }
+
+    public void stopSound()
+    {
+        Debug.Log("here");
+        audioSource.Stop();
+    }
 
 
 }

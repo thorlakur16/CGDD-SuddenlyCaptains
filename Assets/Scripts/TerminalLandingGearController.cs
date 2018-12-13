@@ -9,8 +9,11 @@ public class TerminalLandingGearController : MonoBehaviour {
     public LandingGearController landingGear1;
     public LandingGearController landingGear2;
     public bool landingGearIsDown;
-	// Use this for initialization
-	void Start () {
+    public AudioClip landingGearDownSound;
+    public AudioClip landingGearUpSound;
+    AudioSource audioSource;
+    // Use this for initialization
+    void Start () {
         foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
         {
             if (player.name == "Player1")
@@ -35,6 +38,7 @@ public class TerminalLandingGearController : MonoBehaviour {
             }
         }
         landingGearIsDown = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,12 +50,16 @@ public class TerminalLandingGearController : MonoBehaviour {
             {
                 if (landingGearIsDown)
                 {
+                    audioSource.clip = landingGearUpSound;
+                    audioSource.PlayOneShot(landingGearUpSound, 0.4F);
                     landingGearIsDown = false;
                     landingGear1.LandingGearUp();
                     landingGear2.LandingGearUp();
                 }
                 else
                 {
+                    audioSource.clip = landingGearDownSound;
+                    audioSource.PlayOneShot(landingGearDownSound, 0.7F);
                     landingGearIsDown = true;
                     landingGear1.LandingGearDown();
                     landingGear2.LandingGearDown();
@@ -64,12 +72,16 @@ public class TerminalLandingGearController : MonoBehaviour {
             {
                 if (landingGearIsDown)
                 {
+                    audioSource.clip = landingGearUpSound;
+                    audioSource.PlayOneShot(landingGearUpSound, 0.4F);
                     landingGearIsDown = false;
                     landingGear1.LandingGearUp();
                     landingGear2.LandingGearUp();
                 }
                 else
                 {
+                    audioSource.clip = landingGearDownSound;
+                    audioSource.PlayOneShot(landingGearDownSound, 0.7F);
                     landingGearIsDown = true;
                     landingGear1.LandingGearDown();
                     landingGear2.LandingGearDown();
