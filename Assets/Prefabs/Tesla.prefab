@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50439436832382060}
   - component: {fileID: 61592679949695062}
   m_Layer: 0
-  m_Name: tesla
+  m_Name: Tesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
