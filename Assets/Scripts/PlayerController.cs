@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
     public float size = 1;
     private float gravityScale;
 
+    public AudioClip impact;
+    AudioSource audioSource;
+
     private bool alive = true;
 
     public float boosterX;
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        audioSource = GetComponent<AudioSource>();
         terminalBooster = GameObject.FindObjectOfType<BoosterControl>(); ;
         player_nr = name.Replace("Player", "");
         body = gameObject.GetComponent<Rigidbody2D>();
@@ -40,6 +43,17 @@ public class PlayerController : MonoBehaviour {
         
         if (alive)
         {
+            if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+            }
             float horizontal = Input.GetAxis("Horizontal_P" + player_nr); //horizontal movement
             //float horizontal = Input.GetAxis("Horizontal"); //horizontal movement with keyboard
             DoFire1Things();
@@ -84,8 +98,6 @@ public class PlayerController : MonoBehaviour {
 
             transform.Translate(horizontal, vertical, 0); //move the player
         }
-        
-		
 	}
 
     private void DoFire1Things()
