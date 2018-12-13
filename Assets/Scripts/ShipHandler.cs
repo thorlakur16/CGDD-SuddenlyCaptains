@@ -23,6 +23,9 @@ public class ShipHandler : MonoBehaviour
     public Slider altitudeBar;
     public Image Fill;
     public Text speedText;
+    public Text timerText;
+    public Text penaltyText;
+    private float timer;
 
     public bool shipActive = true;
 
@@ -45,6 +48,7 @@ public class ShipHandler : MonoBehaviour
     public bool rightThrusterIsOn;
     public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
+
 
     // Use this for initialization
     void Start()
@@ -89,6 +93,7 @@ public class ShipHandler : MonoBehaviour
                 speed += 0.02f;
                 speedText.text = speed.ToString();
                 altitudeBar.value = distanceToGround / startingDistance;
+
                 if (speed > 5)
                 {
                     speedText.color = Color.red;
@@ -114,6 +119,12 @@ public class ShipHandler : MonoBehaviour
                 if (!hasLanded)
                 {
                     transform.Translate(0, -Time.deltaTime * speed, 0);
+
+                    //Time display
+                    timer += Time.deltaTime;
+                    timerText.color = Color.white;
+                    TimeSpan t = TimeSpan.FromSeconds(timer);
+                    timerText.text = string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
                 }
 
                 if (hasLanded)
@@ -357,6 +368,12 @@ public class ShipHandler : MonoBehaviour
     public void ShipIsHit()
     {
         hp -= 0.10f;
+        timer += 10;
+
+        penaltyText.color = Color.red;
+        penaltyText.text = "+10";
+        
+        //penaltyText.text = "";
     }
 
 }
