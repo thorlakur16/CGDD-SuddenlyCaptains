@@ -7,10 +7,13 @@ public class RightTerminal : MonoBehaviour {
     public Animator animator;
     public PlayerController thePlayer1;
     public PlayerController thePlayer2;
+    public AudioClip onSound;
+    public AudioClip offSound;
+    AudioSource audioSource;
     // Use this for initialization
     void Start () {
-		
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,11 +25,15 @@ public class RightTerminal : MonoBehaviour {
                 theShip.leftThrusterIsOn = false;
                 if (theShip.rightThrusterIsOn)
                 {
+                    audioSource.clip = offSound;
+                    audioSource.PlayOneShot(offSound, 0.7F);
                     theShip.RightThrusterOff();
                     animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
+                    audioSource.clip = onSound;
+                    audioSource.PlayOneShot(onSound, 0.7F);
                     theShip.RightThrusterOn();                    
                     animator.SetBool("TerminalOn", true);
                 }
@@ -39,11 +46,15 @@ public class RightTerminal : MonoBehaviour {
             {
                 if (theShip.rightThrusterIsOn)
                 {
+                    audioSource.clip = offSound;
+                    audioSource.PlayOneShot(offSound, 0.7F);
                     theShip.RightThrusterOff();
                     animator.SetBool("TerminalOn", false);
                 }
                 else
                 {
+                    audioSource.clip = onSound;
+                    audioSource.PlayOneShot(onSound, 0.7F);
                     theShip.RightThrusterOn();
                     animator.SetBool("TerminalOn", true);
                 }

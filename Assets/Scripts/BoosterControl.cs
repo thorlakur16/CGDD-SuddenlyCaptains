@@ -21,6 +21,7 @@ public class BoosterControl : MonoBehaviour {
     {
         if (!audioSource.isPlaying)
         {
+            Debug.Log("play");
             audioSource.Play();
         }
         
@@ -28,6 +29,7 @@ public class BoosterControl : MonoBehaviour {
 
     public void stopSound()
     {
+        Debug.Log("here");
         audioSource.Stop();
     }
 

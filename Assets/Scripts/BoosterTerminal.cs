@@ -8,26 +8,26 @@ public class BoosterTerminal : MonoBehaviour {
     public PlayerController thePlayer2;
 
     public GameObject boosterRight;
-
     public GameObject boosterLeft;
-
     public BoosterControl boosterMain;
-
-
+    
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
 
         if (thePlayer1.onTerminalBooster)
         {
             if (Input.GetButton("Fire1_P1"))
             {
-                boosterMain.playSound();
+                if (theShip.mainThrusterIsOn)
+                {
+                    boosterMain.playSound();
+                }
                 theShip.StartBooster();
             }
             if (Input.GetButtonUp("Fire1_P1"))
@@ -40,10 +40,15 @@ public class BoosterTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P2"))
             {
+                if (theShip.mainThrusterIsOn)
+                {
+                    boosterMain.playSound();
+                }
                 theShip.StartBooster();
             }
             if (Input.GetButtonUp("Fire1_P2"))
             {
+                boosterMain.stopSound();
                 theShip.StopBooster();
             }
         }
