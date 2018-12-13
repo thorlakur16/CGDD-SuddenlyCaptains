@@ -8,16 +8,7 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool GameIsPaused;
     public GameObject pauseMenuUI;
-    public EventSystem es;
-    private GameObject storeSelected;
 
-    void Awake()
-    {
-        storeSelected = es.firstSelectedGameObject;
-        GameIsPaused = true;
-        //Time.timeScale = 0f;
-        //Debug.Log(storeSelected);
-    }
     // Update is called once per frame
     void Update () {
         //Debug.Log("startsadasdasd");
@@ -35,24 +26,6 @@ public class PauseMenu : MonoBehaviour {
                     Pause();
                 }
             }
-        if (GameIsPaused)
-        {
-            //Debug.Log("viddifag");
-            
-            if (es.currentSelectedGameObject != storeSelected)
-            {
-                Debug.Log(es.currentSelectedGameObject);
-                Debug.Log(storeSelected);
-                if (es.currentSelectedGameObject == null)
-                {
-                    es.SetSelectedGameObject(storeSelected);
-                }
-                else
-                {
-                    storeSelected = es.currentSelectedGameObject;
-                }
-            }
-        }
 
     }
     public void Resume()
