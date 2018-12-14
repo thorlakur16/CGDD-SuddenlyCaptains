@@ -47,7 +47,6 @@ public class Leaderboard : MonoBehaviour
         pnConfiguration.UUID = Random.Range(0f, 999999f).ToString();
 
         pubnub = new PubNub(pnConfiguration);
-        Debug.Log(pnConfiguration.UUID);
 
 
         MyClass2 myFireObject = new MyClass2();
@@ -64,7 +63,7 @@ public class Leaderboard : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(string.Format("Fire Timetoken: {0}", result.Timetoken));
+                    
                 }
             });
 
@@ -86,7 +85,6 @@ public class Leaderboard : MonoBehaviour
                     string usernameobject = "Line" + usernamevar;
                     GameObject.Find(usernameobject).GetComponent<Text>().text = usernamevar.ToString() + ". " + username.ToString();
                     usernamevar++;
-                    Debug.Log(username);
                 }
 
                 int scorevar = 1;
@@ -95,7 +93,6 @@ public class Leaderboard : MonoBehaviour
                     string scoreobject = "Score" + scorevar;
                     GameObject.Find(scoreobject).GetComponent<Text>().text = score.ToString();
                     scorevar++;
-                    Debug.Log(score);
                 }
             }
             if (mea.PresenceEventResult != null)

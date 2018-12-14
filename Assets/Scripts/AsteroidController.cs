@@ -51,7 +51,7 @@ public class AsteroidController : MonoBehaviour {
         //play animation explode
         animator.SetTrigger("Explode");
 
-        if(coll.name != "asteroid-use" || coll.name != "Tesla")
+        if(coll.tag != "InstanceOfAsteroid")
         {
             transform.GetComponent<CircleCollider2D>().isTrigger = false;
             //transform.gameObject.AddComponent<CircleCollider2D>();

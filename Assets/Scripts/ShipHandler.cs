@@ -77,7 +77,7 @@ public class ShipHandler : MonoBehaviour
         PauseMenu.GameIsPaused = false;
         Leaderboard.SetActive(false);
 
-        xPosOfLandingPlatform = UnityEngine.Random.Range(-25, 25); //Getting the random x place for the landing platform
+        xPosOfLandingPlatform = UnityEngine.Random.Range(-250, 250); //Getting the random x place for the landing platform
         Vector3 pos = new Vector3(xPosOfLandingPlatform, theLandingSpot.transform.position.y, theLandingSpot.transform.position.z);
         theLandingSpot.transform.position = pos; //Setting the random value to the actual platform
 
@@ -179,21 +179,21 @@ public class ShipHandler : MonoBehaviour
     {
         GameObject asteroidSpawner = GameObject.Find("CreatorOfAsteroidsv2");
         float testY = transform.position.y;
-        if (testY > 550)
+        if (testY > 800)
         {
             speedTick = 0.01f;
         }
-        else if (testY < 550 &&  testY > 450)
+        else if (testY < 800 &&  testY > 600)
         {
             speedTick = 0.02f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
-        else if (testY < 450 && testY > 350)
+        else if (testY < 600 && testY > 400)
         {
             speedTick = 0.03f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
-        else if (testY < 350 && testY > 250)
+        else if (testY < 400 && testY > 250)
         {
             speedTick = 0.04f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
@@ -202,31 +202,6 @@ public class ShipHandler : MonoBehaviour
         {
             speedTick = 0.05f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
-        }
-        else if (testY < 150)
-        {
-            speedTick = 0.06f;
-        }
-
-        if((int)testY == 550)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
-        }
-        else if ((int)testY == 450)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
-        }
-        else if ((int)testY == 350)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
-        }
-        else if ((int)testY == 250)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
-        }
-        else if ((int)testY == 150)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
         }
     }
 
@@ -479,34 +454,31 @@ public class ShipHandler : MonoBehaviour
     }
     public void PublishScore()
     {
-        Debug.Log(Name.playerName);
+
         PNConfiguration pnConfiguration = new PNConfiguration();
         pnConfiguration.PublishKey = "pub-c-7536c573-b8fe-4101-bdb9-fea28d3cd6a9";
         pnConfiguration.SubscribeKey = "sub-c-8c16aaf2-fef4-11e8-9231-4abfa1972993";
 
         pnConfiguration.LogVerbosity = PNLogVerbosity.BODY;
         pnConfiguration.UUID = UnityEngine.Random.Range(0f, 999999f).ToString();
-        Debug.Log("1 stop");
+
         pubnub = new PubNub(pnConfiguration);
 
-        Debug.Log("2 stop");
         totalTime = timer + totalPenalty;
         TimeSpan u = TimeSpan.FromSeconds(totalTime);
         var usernametext = Name.playerName;// this would be set somewhere else in the code
         var scoretext = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
-        Debug.Log("3 stop");
         MyClass2 myObject = new MyClass2();
         myObject.username = Name.playerName;
         myObject.score = string.Format("{0:D2}:{1:D2}:{2:D2}", u.Minutes, u.Seconds, u.Milliseconds);
         string json = JsonUtility.ToJson(myObject);
-        Debug.Log("4 stop");
         pubnub.Publish()
             .Channel("my_channel")
             .Message(json)
             .Async((result, status) => {
                 if (!status.Error)
                 {
-                    Debug.Log(string.Format("Publish Timetoken: {0}", result.Timetoken));
+                    
                 }
                 else
                 {
@@ -515,7 +487,7 @@ public class ShipHandler : MonoBehaviour
                 }
             });
         //Output this to console when the Button is clicked
-        Debug.Log("You have clicked the button!");
+
     }
 
 }
