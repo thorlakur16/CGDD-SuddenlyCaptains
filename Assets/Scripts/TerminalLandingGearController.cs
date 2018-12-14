@@ -12,6 +12,9 @@ public class TerminalLandingGearController : MonoBehaviour {
     public AudioClip landingGearDownSound;
     public AudioClip landingGearUpSound;
     AudioSource audioSource;
+    public ShipHandler theShip;
+    Animator animator;
+    public float activateLandingGearDistance;
     // Use this for initialization
     void Start () {
         foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
@@ -39,52 +42,64 @@ public class TerminalLandingGearController : MonoBehaviour {
         }
         landingGearIsDown = false;
         audioSource = GetComponent<AudioSource>();
+        theShip = GameObject.FindObjectOfType<ShipHandler>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Activated", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (thePlayer1.onTerminalLandingGear)
+        if (theShip.transform.position.y < activateLandingGearDistance)
         {
-            if (Input.GetButtonDown("Fire1_P1"))
+            if (!animator.GetBool("Activated"))
             {
-                if (landingGearIsDown)
+                animator.SetBool("Activated", true);
+                audioSource.Play();
+            }
+
+            if (thePlayer1.onTerminalLandingGear)
+            {
+                if (Input.GetButtonDown("Fire1_P1"))
                 {
-                    audioSource.clip = landingGearUpSound;
-                    audioSource.PlayOneShot(landingGearUpSound, 0.4F);
-                    landingGearIsDown = false;
-                    landingGear1.LandingGearUp();
-                    landingGear2.LandingGearUp();
-                }
-                else
-                {
-                    //audioSource.clip = landingGearDownSound;
-                    audioSource.PlayOneShot(landingGearDownSound, 0.7F);
-                    landingGearIsDown = true;
-                    landingGear1.LandingGearDown();
-                    landingGear2.LandingGearDown();
+                    if (landingGearIsDown)
+                    {
+                        audioSource.clip = landingGearUpSound;
+                        audioSource.PlayOneShot(landingGearUpSound, 0.4F);
+                        landingGearIsDown = false;
+                        landingGear1.LandingGearUp();
+                        landingGear2.LandingGearUp();
+                    }
+                    else
+                    {
+                        audioSource.clip = landingGearDownSound;
+                        audioSource.PlayOneShot(landingGearDownSound, 0.7F);
+                        landingGearIsDown = true;
+                        landingGear1.LandingGearDown();
+                        landingGear2.LandingGearDown();
+                    }
                 }
             }
-        }
-        if (thePlayer2.onTerminalLandingGear)
-        {
-            if (Input.GetButtonDown("Fire1_P2"))
+            if (thePlayer2.onTerminalLandingGear)
             {
-                if (landingGearIsDown)
+                if (Input.GetButtonDown("Fire1_P2"))
                 {
-                    audioSource.clip = landingGearUpSound;
-                    audioSource.PlayOneShot(landingGearUpSound, 0.4F);
-                    landingGearIsDown = false;
-                    landingGear1.LandingGearUp();
-                    landingGear2.LandingGearUp();
-                }
-                else
-                {
-                    audioSource.clip = landingGearDownSound;
-                    audioSource.PlayOneShot(landingGearDownSound, 0.7F);
-                    landingGearIsDown = true;
-                    landingGear1.LandingGearDown();
-                    landingGear2.LandingGearDown();
+                    if (landingGearIsDown)
+                    {
+                        audioSource.clip = landingGearUpSound;
+                        audioSource.PlayOneShot(landingGearUpSound, 0.4F);
+                        landingGearIsDown = false;
+                        landingGear1.LandingGearUp();
+                        landingGear2.LandingGearUp();
+                    }
+                    else
+                    {
+                        audioSource.clip = landingGearDownSound;
+                        audioSource.PlayOneShot(landingGearDownSound, 0.7F);
+                        landingGearIsDown = true;
+                        landingGear1.LandingGearDown();
+                        landingGear2.LandingGearDown();
+                    }
                 }
             }
         }

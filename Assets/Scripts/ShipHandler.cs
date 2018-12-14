@@ -64,7 +64,6 @@ public class ShipHandler : MonoBehaviour
     AudioSource audioSource;
     public static PubNub pubnub;
 
-
     // Use this for initialization
     void Start()
     {
