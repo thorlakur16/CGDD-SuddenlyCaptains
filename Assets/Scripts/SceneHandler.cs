@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour {
 
@@ -237,7 +238,7 @@ public class SceneHandler : MonoBehaviour {
         }
         if(timer == 3500)
         {
-            //goto next Scene.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             Debug.Log("Goto next scene");
         }
         
