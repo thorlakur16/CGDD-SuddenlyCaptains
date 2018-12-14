@@ -52,11 +52,8 @@ public class ShipHandler : MonoBehaviour
     public bool leftThrusterIsOn;
     private float leftThrust = 0f, rightThrust = 0f;
 
-<<<<<<< HEAD
-=======
     public AudioClip boosterSound;
     AudioSource audioSource;
->>>>>>> a5ff185330b5509bd607467d782c697928f31cdb
 
     // Use this for initialization
     void Start()
