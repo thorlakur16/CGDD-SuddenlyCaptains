@@ -9,7 +9,9 @@ public class AsteroidController : MonoBehaviour {
     public Transform target;
     public float rotation;
     public float speed;
-    private float showForAsteroid = 40;
+    //private float showForAsteroid = 40;
+    public AudioClip explodeSound;
+    AudioSource audioSource;
 
     public float hide;
 
@@ -17,7 +19,8 @@ public class AsteroidController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Awake()
     {
         theShip = FindObjectOfType<ShipHandler>();
@@ -48,12 +51,13 @@ public class AsteroidController : MonoBehaviour {
         //play animation explode
         animator.SetTrigger("Explode");
 
-        if(coll.name != "asteroid-use")
+        if(coll.name != "asteroid-use" || coll.name != "Tesla")
         {
             transform.GetComponent<CircleCollider2D>().isTrigger = false;
             //transform.gameObject.AddComponent<CircleCollider2D>();
             hit = true;
             theShip.ShipIsHit();
+            audioSource.PlayOneShot(explodeSound, 0.7f);
         }
         else
         {
