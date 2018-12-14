@@ -186,26 +186,18 @@ public class ShipHandler : MonoBehaviour
         else if (testY < 800 &&  testY > 600)
         {
             speedTick = 0.02f;
-            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 600 && testY > 400)
         {
             speedTick = 0.03f;
-            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 400 && testY > 250)
         {
             speedTick = 0.04f;
-            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 250 && testY > 150)
         {
             speedTick = 0.05f;
-            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
-        }
-        if((int)testY == 800)
-        {
-            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
         }
     }
 
