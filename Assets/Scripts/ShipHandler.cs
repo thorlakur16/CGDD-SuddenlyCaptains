@@ -203,6 +203,10 @@ public class ShipHandler : MonoBehaviour
             speedTick = 0.05f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
+        if((int)testY == 800)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
     }
 
     public void MainThrusterOn()
