@@ -106,7 +106,7 @@ public class ShipHandler : MonoBehaviour
             {
                 checkSpeedTick();
                 speed += speedTick;
-                speedText.text = speed.ToString();
+                speedText.text = speed.ToString("0.00"); //i.ToString("000")
                 altitudeBar.value = distanceToGround / startingDistance;
 
                 if (speed > 5)

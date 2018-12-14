@@ -44,7 +44,7 @@ public class SceneHandler : MonoBehaviour {
     void Update () {
 
         //skip the scene.
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Restart_P1") || Input.GetButtonDown("Restart_P2"))
         {
             timer = 3500;
         }
