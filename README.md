@@ -20,7 +20,7 @@ The joystick on the left controls the character
 
 Players have to activate certain terminals before using the middle one to use them. The landing gear terminal awakes when the players get close to the ground and they need to open the landing gear before landing on the landing zone, otherwise they explode. 
 
-
+![Explanations of ship](/theShipWithExplanations2.jpg)
 
 ## Built With
 
