@@ -203,7 +203,71 @@ public class ShipHandler : MonoBehaviour
             speedTick = 0.05f;
             //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
-        if((int)testY == 800)
+        if ((int)testY == 900)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 850)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 800)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 750)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 700)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 650)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 600)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 550)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 500)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 450)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 400)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 350)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 300)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 250)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 200)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 150)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        if ((int)testY == 100)
         {
             asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
         }
