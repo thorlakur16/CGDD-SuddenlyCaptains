@@ -57,6 +57,7 @@ public class TerminalLandingGearController : MonoBehaviour {
                 animator.SetBool("Activated", true);
                 audioSource.Play();
             }
+
             if (thePlayer1.onTerminalLandingGear)
             {
                 if (Input.GetButtonDown("Fire1_P1"))
