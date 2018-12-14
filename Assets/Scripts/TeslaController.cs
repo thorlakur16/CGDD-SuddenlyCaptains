@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TeslaController : MonoBehaviour {
     float speed;
+    public GameObject explosion;
 	// Use this for initialization
 	void Start () {
         speed = UnityEngine.Random.Range(1, 10);
-
 	}
 	
 	// Update is called once per frame
@@ -15,4 +15,14 @@ public class TeslaController : MonoBehaviour {
         transform.Translate(-speed * Time.deltaTime, -speed/2 * Time.deltaTime, 0f);
         //transform.Rotate(0,0,speed * Time.deltaTime*10);
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name != "asteroid-use")
+        {
+            transform.GetComponent<BoxCollider2D>().isTrigger = false;
+            Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            Destroy(gameObject, 0.4f);
+        }
+    }
 }
