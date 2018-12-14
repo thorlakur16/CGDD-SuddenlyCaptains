@@ -4536,7 +4536,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 56eac7110105daf42b63c4f2ddcf84c5, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5484,6 +5484,7 @@ MonoBehaviour:
   thePlayer2: {fileID: 114180424405707868}
   onSound: {fileID: 8300000, guid: daf4b83002d367146a2d7456e8f2a791, type: 3}
   offSound: {fileID: 8300000, guid: 83dd6858ad43834499c75046b70af8bc, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &114180424405707868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5507,6 +5508,7 @@ MonoBehaviour:
   onTerminalBooster: 0
   onLadder: 0
   size: 1
+  volume: {fileID: 0}
   impact: {fileID: 0}
   boosterX: 0
   boosterY: 0
@@ -5533,6 +5535,7 @@ MonoBehaviour:
   onTerminalBooster: 0
   onLadder: 0
   size: 1
+  volume: {fileID: 0}
   impact: {fileID: 0}
   boosterX: 0
   boosterY: 0
@@ -5554,6 +5557,9 @@ MonoBehaviour:
   landingGearIsDown: 0
   landingGearDownSound: {fileID: 0}
   landingGearUpSound: {fileID: 0}
+  volume: {fileID: 0}
+  theShip: {fileID: 0}
+  activateLandingGearDistance: 0
 --- !u!114 &114303431028482588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5571,6 +5577,7 @@ MonoBehaviour:
   animator: {fileID: 95215327593732024}
   onSound: {fileID: 8300000, guid: daf4b83002d367146a2d7456e8f2a791, type: 3}
   offSound: {fileID: 8300000, guid: 83dd6858ad43834499c75046b70af8bc, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &114304199001762318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5590,6 +5597,9 @@ MonoBehaviour:
   landingGearDownSound: {fileID: 8300000, guid: 8e5df51db03fc9e4b8885ac4d1efa99d,
     type: 3}
   landingGearUpSound: {fileID: 8300000, guid: 8dc5efdb9bc02a64fac77ff170ef5197, type: 3}
+  volume: {fileID: 0}
+  theShip: {fileID: 0}
+  activateLandingGearDistance: 0
 --- !u!114 &114320251315922146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5607,6 +5617,7 @@ MonoBehaviour:
   animator: {fileID: 95870643490140226}
   onSound: {fileID: 8300000, guid: daf4b83002d367146a2d7456e8f2a791, type: 3}
   offSound: {fileID: 8300000, guid: 83dd6858ad43834499c75046b70af8bc, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &114335178758088272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5626,6 +5637,7 @@ MonoBehaviour:
   force: 10
   theShip: {fileID: 114911868721827660}
   impact: {fileID: 8300000, guid: 54d9e5b930ac37d4ba5d6fc22f6050ff, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &114455573562649288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5742,6 +5754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impact: {fileID: 8300000, guid: d1b8c368e749b6346b3f7811b012fb7c, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &114781526232190036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5800,12 +5813,16 @@ MonoBehaviour:
   rightTerminal: {fileID: 1327980248004282}
   theLandingSpot: {fileID: 0}
   completeText: {fileID: 1226414740889452}
+  completedText: {fileID: 114921953766020642}
   dieText: {fileID: 1242715328862862}
   theLandingGear: {fileID: 114455573562649288}
   healthBar: {fileID: 0}
   altitudeBar: {fileID: 0}
   Fill: {fileID: 0}
   speedText: {fileID: 0}
+  timerText: {fileID: 0}
+  penaltyText: {fileID: 0}
+  Leaderboard: {fileID: 0}
   shipActive: 1
   groundCheckPoint: {fileID: 4948945571422730}
   middleOfShip: {fileID: 4861951806642694}
