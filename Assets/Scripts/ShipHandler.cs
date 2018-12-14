@@ -399,6 +399,7 @@ public class ShipHandler : MonoBehaviour
                 dieText.SetActive(true);
                 shipActive = false;
                 BreakShip();
+                Leaderboard.SetActive(true);
                 //hasLanded = true;
             }
 

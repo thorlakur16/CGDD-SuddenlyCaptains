@@ -6,7 +6,7 @@ public class Volume : MonoBehaviour {
 
     private AudioSource audioSource;
 
-    private float musicVolume = 1f;
+    private float musicVolume = 0.5f;
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
@@ -20,5 +20,9 @@ public class Volume : MonoBehaviour {
     public void setVolume(float vol)
     {
         musicVolume = vol;
+    }
+    public float getAudioVolume()
+    {
+        return musicVolume;
     }
 }

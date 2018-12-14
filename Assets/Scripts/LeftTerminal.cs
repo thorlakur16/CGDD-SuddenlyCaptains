@@ -10,15 +10,18 @@ public class LeftTerminal : MonoBehaviour {
     public AudioClip onSound;
     public AudioClip offSound;
     AudioSource audioSource;
+    public Volume volume;
     // Use this for initialization
     void Start ()
     {
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        audioSource.volume = volume.getAudioVolume();
         if (thePlayer1.onTerminalLeft)
         {
             if (Input.GetButtonDown("Fire1_P1"))
