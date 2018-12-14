@@ -198,7 +198,9 @@ public class ShipHandler : MonoBehaviour
         else if (testY < 250 && testY > 150)
         {
             speedTick = 0.05f;
+
         }
+        
     }
 
     public void MainThrusterOn()
@@ -319,7 +321,7 @@ public class ShipHandler : MonoBehaviour
     public void BreakShip()
     {
         audioSource.PlayOneShot(shipExplodingSound, 1F);
-        float force = 20f;
+        float force = 30f;
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
         GameObject[] decors = GameObject.FindGameObjectsWithTag("Decor");
         GameObject[] covers = GameObject.FindGameObjectsWithTag("Cover");

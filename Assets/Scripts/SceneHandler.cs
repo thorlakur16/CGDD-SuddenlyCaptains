@@ -47,7 +47,7 @@ public class SceneHandler : MonoBehaviour {
         //skip the scene.
         if (Input.GetButtonDown("Restart_P1") || Input.GetButtonDown("Restart_P2"))
         {
-            timer = 3500;
+            timer = 3650;
         }
 
 
@@ -225,7 +225,7 @@ public class SceneHandler : MonoBehaviour {
             nameText.text = "Gordon Fabio Riviera, Janitor";
             dialogText.text = ":O";
         }
-        if (timer > 3250 && timer < 3500)
+        if (timer > 3250 && timer < 3650)
         {
             if (!audioSource.isPlaying)
             {
@@ -236,7 +236,7 @@ public class SceneHandler : MonoBehaviour {
             nameText.text = "Gordon Fabio Riviera, Janitor";
             dialogText.text = "Ohh no! The captain is dead... we will have to work together to land this ship safely. Let's get to it.";
         }
-        if(timer == 3500)
+        if(timer == 3650)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
