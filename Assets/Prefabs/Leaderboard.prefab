@@ -196,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1496226048760880
 GameObject:
   m_ObjectHideFlags: 1
@@ -747,9 +747,6 @@ MonoBehaviour:
   Score3: {fileID: 114714370484684002}
   Score4: {fileID: 114985767933250444}
   Score5: {fileID: 114001613765770652}
-  SubmitButton: {fileID: 114832980446472250}
-  FieldUsername: {fileID: 114030056724101612}
-  FieldScore: {fileID: 114281280920756774}
 --- !u!114 &114571644261893714
 MonoBehaviour:
   m_ObjectHideFlags: 1
