@@ -40,6 +40,11 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 0f;
         GameIsPaused = true;
     } 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Resume();
+    }
     public void QuitToMainMenu()
     {
         SceneManager.LoadScene(0);

@@ -239,7 +239,6 @@ public class SceneHandler : MonoBehaviour {
         if(timer == 3500)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log("Goto next scene");
         }
         
         timer++;

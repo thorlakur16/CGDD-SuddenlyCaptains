@@ -10,11 +10,12 @@ public class BoosterTerminal : MonoBehaviour {
     public GameObject boosterRight;
     public GameObject boosterLeft;
     public BoosterControl boosterMain;
+    public bool playerIsUsingTerminal;
     
     // Use this for initialization
     void Start ()
     {
-
+        playerIsUsingTerminal = false;
     }
 	
 	// Update is called once per frame
@@ -24,14 +25,20 @@ public class BoosterTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P1"))
             {
-                if (theShip.mainThrusterIsOn)
+                if (!playerIsUsingTerminal)
                 {
-                    boosterMain.playSound();
+                    playerIsUsingTerminal = true;
+                    if (theShip.mainThrusterIsOn)
+                    {
+                        boosterMain.playSound();
+                    }
+                    theShip.StartBooster();
                 }
-                theShip.StartBooster();
+               
             }
             if (Input.GetButtonUp("Fire1_P1"))
             {
+                playerIsUsingTerminal = false;
                 boosterMain.stopSound();
                 theShip.StopBooster();
             }
@@ -40,14 +47,20 @@ public class BoosterTerminal : MonoBehaviour {
         {
             if (Input.GetButton("Fire1_P2"))
             {
-                if (theShip.mainThrusterIsOn)
+                if(!playerIsUsingTerminal)
                 {
-                    boosterMain.playSound();
+                    playerIsUsingTerminal = true;
+                    if (theShip.mainThrusterIsOn)
+                    {
+                        boosterMain.playSound();
+                    }
+                    theShip.StartBooster();
                 }
-                theShip.StartBooster();
+              
             }
             if (Input.GetButtonUp("Fire1_P2"))
             {
+                playerIsUsingTerminal = false;
                 boosterMain.stopSound();
                 theShip.StopBooster();
             }
