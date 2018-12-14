@@ -6,9 +6,11 @@ public class BoosterControl : MonoBehaviour {
 
     public AudioClip impact;
     AudioSource audioSource;
+    public Volume volume;
 
     // Use this for initialization
     void Start () {
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         audioSource = GetComponent<AudioSource>();
     }
 	
@@ -21,6 +23,7 @@ public class BoosterControl : MonoBehaviour {
     {
         if (!audioSource.isPlaying)
         {
+            audioSource.volume = volume.getAudioVolume()*0.5f;
             Debug.Log("play");
             audioSource.Play();
         }

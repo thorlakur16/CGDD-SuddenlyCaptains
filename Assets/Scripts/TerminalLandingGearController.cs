@@ -12,11 +12,14 @@ public class TerminalLandingGearController : MonoBehaviour {
     public AudioClip landingGearDownSound;
     public AudioClip landingGearUpSound;
     AudioSource audioSource;
+    public Volume volume;
+
     public ShipHandler theShip;
     Animator animator;
     public float activateLandingGearDistance;
-    // Use this for initialization
+
     void Start () {
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         foreach (PlayerController player in GameObject.FindObjectsOfType(typeof(PlayerController)))
         {
             if (player.name == "Player1")
@@ -50,7 +53,11 @@ public class TerminalLandingGearController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        audioSource.volume = volume.getAudioVolume();
+
         if (theShip.transform.position.y < activateLandingGearDistance)
+
         {
             if (!animator.GetBool("Activated"))
             {

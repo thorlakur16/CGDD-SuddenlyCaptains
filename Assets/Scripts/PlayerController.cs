@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     public bool onLadder = false;
     public float size = 1;
     private float gravityScale;
+    public Volume volume;
 
     public AudioClip impact;
     AudioSource audioSource;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         audioSource = GetComponent<AudioSource>();
         terminalBooster = GameObject.FindObjectOfType<BoosterControl>(); ;
         player_nr = name.Replace("Player", "");
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        
+        audioSource.volume = volume.getAudioVolume();
         if (alive)
         {
             if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)

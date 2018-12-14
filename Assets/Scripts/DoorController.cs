@@ -17,18 +17,22 @@ public class DoorController : MonoBehaviour {
 
     public AudioClip impact;
     AudioSource audioSource;
-    
+    public Volume volume;
+
 
     // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponentInParent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(timeOpen > 0)
+
+        audioSource.volume = volume.getAudioVolume();
+        if (timeOpen > 0)
         {
             timeOpen--;
             //check if ship has landed
