@@ -177,6 +177,7 @@ public class ShipHandler : MonoBehaviour
 
     private void checkSpeedTick()
     {
+        GameObject asteroidSpawner = GameObject.Find("CreatorOfAsteroidsv2");
         float testY = transform.position.y;
         if (testY > 550)
         {
@@ -185,22 +186,47 @@ public class ShipHandler : MonoBehaviour
         else if (testY < 550 &&  testY > 450)
         {
             speedTick = 0.02f;
+            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 450 && testY > 350)
         {
             speedTick = 0.03f;
+            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 350 && testY > 250)
         {
             speedTick = 0.04f;
+            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 250 && testY > 150)
         {
             speedTick = 0.05f;
+            //asteroidSpawner.GetComponent<AsteroidSpawner>().spawnWave();
         }
         else if (testY < 150)
         {
             speedTick = 0.06f;
+        }
+
+        if((int)testY == 550)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        else if ((int)testY == 450)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        else if ((int)testY == 350)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        else if ((int)testY == 250)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
+        }
+        else if ((int)testY == 150)
+        {
+            asteroidSpawner.GetComponent<AsteroidSpawner>().SpawnWave();
         }
     }
 

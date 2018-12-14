@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &269409447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +278,53 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0f93b4239735564190492ed751697a2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &496191029
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.031042378
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4711845579128272, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: theShip
+      value: 
+      objectReference: {fileID: 72666115}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &586469457
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,12 +421,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 850072845}
   m_CullTransparentMesh: 0
---- !u!114 &1021387707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114921953766020642, guid: b95e9ec2be42cef42886d7174b5e712d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1342443506}
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
 --- !u!114 &1024703189 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114809258189523134, guid: 2c317a66b81f865409b141df594a14bb,
@@ -1018,6 +1059,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114858432383526038, guid: b95e9ec2be42cef42886d7174b5e712d,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1547160776}
+    - target: {fileID: 114009373048424100, guid: b95e9ec2be42cef42886d7174b5e712d,
+        type: 2}
+      propertyPath: thePlanetGround
+      value: 
+      objectReference: {fileID: 1802244498}
+    - target: {fileID: 1741257222896060, guid: b95e9ec2be42cef42886d7174b5e712d, type: 2}
+      propertyPath: m_Name
+      value: theShip
+      objectReference: {fileID: 0}
     - target: {fileID: 114911868721827660, guid: b95e9ec2be42cef42886d7174b5e712d,
         type: 2}
       propertyPath: theLandingSpot
@@ -1043,25 +1098,6 @@ Prefab:
       propertyPath: speedText
       value: 
       objectReference: {fileID: 850072847}
-    - target: {fileID: 114858432383526038, guid: b95e9ec2be42cef42886d7174b5e712d,
-        type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1547160776}
-    - target: {fileID: 114009373048424100, guid: b95e9ec2be42cef42886d7174b5e712d,
-        type: 2}
-      propertyPath: thePlanetGround
-      value: 
-      objectReference: {fileID: 1802244498}
-    - target: {fileID: 1741257222896060, guid: b95e9ec2be42cef42886d7174b5e712d, type: 2}
-      propertyPath: m_Name
-      value: theShip
-      objectReference: {fileID: 0}
-    - target: {fileID: 114911868721827660, guid: b95e9ec2be42cef42886d7174b5e712d,
-        type: 2}
-      propertyPath: completedText
-      value: 
-      objectReference: {fileID: 1021387707}
     - target: {fileID: 114911868721827660, guid: b95e9ec2be42cef42886d7174b5e712d,
         type: 2}
       propertyPath: timerText
@@ -1077,11 +1113,6 @@ Prefab:
       propertyPath: Leaderboard
       value: 
       objectReference: {fileID: 841521837}
-    - target: {fileID: 82569229393761920, guid: b95e9ec2be42cef42886d7174b5e712d,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95e9ec2be42cef42886d7174b5e712d, type: 2}
   m_IsPrefabAsset: 0
