@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     private string player_nr;
     public Animator animator;
     public BoosterControl terminalBooster;
+    public BoosterTerminal boosterTerminal;
     private Rigidbody2D body;
     public float speed;
     public bool onDoor = false;
@@ -113,11 +114,22 @@ public class PlayerController : MonoBehaviour {
             
             if(terminalName == "BoosterTerminal")
             {
-                if (this.animator.GetBool("pushTerminal") != true)
+                if(player_nr == "1" && !boosterTerminal.player2IsUsingTerminal)
                 {
-                    this.animator.SetBool("pushTerminal", true);
+                    if (this.animator.GetBool("pushTerminal") != true)
+                    {
+                        this.animator.SetBool("pushTerminal", true);
+                    }
+                    gameObject.transform.position = new Vector3(terminalBooster.transform.position.x, transform.position.y, transform.position.z);
                 }
-                gameObject.transform.position = new Vector3(terminalBooster.transform.position.x, transform.position.y, transform.position.z);
+                if (player_nr == "2" && !boosterTerminal.player1IsUsingTerminal)
+                {
+                    if (this.animator.GetBool("pushTerminal") != true)
+                    {
+                        this.animator.SetBool("pushTerminal", true);
+                    }
+                    gameObject.transform.position = new Vector3(terminalBooster.transform.position.x, transform.position.y, transform.position.z);
+                }
             }
             
             if (this.animator.GetBool("pushTerminal") != true)
