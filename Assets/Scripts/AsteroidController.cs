@@ -54,7 +54,6 @@ public class AsteroidController : MonoBehaviour {
         if(coll.tag != "InstanceOfAsteroid")
         {
             transform.GetComponent<CircleCollider2D>().isTrigger = false;
-            //transform.gameObject.AddComponent<CircleCollider2D>();
             hit = true;
             theShip.ShipIsHit();
             audioSource.PlayOneShot(explodeSound, 0.7f);
