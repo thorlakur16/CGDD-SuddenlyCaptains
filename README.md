@@ -30,6 +30,8 @@ Players have to activate certain terminals before pressing the middle one to use
 
 ## Music
 11 - Ilya Kokorev - Bring On The Hospitality we got from https://www.fakemusicgenerator.com/
+8-Bit Ninjas - Shiny Spaceship we got from http://freemusicarchive.org/music/8-Bit_Ninjas/Party_in_Space/kzz007_-_12_-_8-bit_ninjas_-_shiny_spaceship
+Shiny Spaceship by 8-Bit Ninjas is licensed under a Attribution-NonCommercial-ShareAlike 3.0 International License. 
 
 --
 
