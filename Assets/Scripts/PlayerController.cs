@@ -106,8 +106,6 @@ public class PlayerController : MonoBehaviour {
 
     private void DoFire1Things()
     {
-        
-
         if (Input.GetButton("Fire1_P" + player_nr)) //the A button   Input.GetButton("Fire1") fyrir keyboard control
         {
             string terminalName = GetActiveTerminalName();

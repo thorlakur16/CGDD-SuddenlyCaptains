@@ -50,20 +50,20 @@ public class AsteroidSpawner : MonoBehaviour {
             SpawnWave();
             wave5 = true;
         }
-        if (shipY < 400 && wave5 == false)
-        {
-            SpawnWave();
-            wave5 = true;
-        }
-        if (shipY < 300 && wave6 == false)
+        if (shipY < 400 && wave6 == false)
         {
             SpawnWave();
             wave6 = true;
         }
-        if (shipY < 200 && wave6 == false)
+        if (shipY < 300 && wave7 == false)
         {
             SpawnWave();
-            wave6 = true;
+            wave7 = true;
+        }
+        if (shipY < 200 && wave8 == false)
+        {
+            SpawnWave();
+            wave8 = true;
         }
     }
     public void SpawnWave()

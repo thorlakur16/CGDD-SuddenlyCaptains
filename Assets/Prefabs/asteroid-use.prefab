@@ -181,7 +181,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f12c17ddb57bffa42b5a6d4673364a6d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.479
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   speed: 2
   explodeSound: {fileID: 8300000, guid: f12c17ddb57bffa42b5a6d4673364a6d, type: 3}
   hide: 0
+  volume: {fileID: 0}
 --- !u!212 &212299036678199030
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -16,8 +16,11 @@ public class AsteroidController : MonoBehaviour {
     public float hide;
 
     private bool hit = false;
-	// Use this for initialization
-	void Start () {
+    public Volume volume;
+
+    // Use this for initialization
+    void Start () {
+        volume = GameObject.FindObjectOfType<ShipHandler>().GetComponent<Volume>();
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
         audioSource = GetComponent<AudioSource>();
     }
@@ -29,6 +32,7 @@ public class AsteroidController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        audioSource.volume = volume.getAudioVolume();
         if (hit)
         {
             transform.Translate(0, -Time.deltaTime * theShip.speed, 0);
