@@ -1152,6 +1152,60 @@ Prefab:
       propertyPath: theShip
       value: 
       objectReference: {fileID: 1744403742}
+    - target: {fileID: 1103950629372858, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave8
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: wave9
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114514766364201186, guid: 3478db8b392d999499db2b4a0c6e2997,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3478db8b392d999499db2b4a0c6e2997, type: 2}
   m_IsPrefabAsset: 0
