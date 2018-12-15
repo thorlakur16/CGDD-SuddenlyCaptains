@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TeslaController : MonoBehaviour {
     float speed;
-    public GameObject explosion;
     public ShipHandler theShip;
     bool hit;
+    public AudioClip explosionSound;
 	// Use this for initialization
 	void Start () {
         speed = UnityEngine.Random.Range(1, 10);
@@ -33,8 +33,9 @@ public class TeslaController : MonoBehaviour {
     {
         if(collision.name != "asteroid-use")
         {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(explosionSound, 0.4f);
             transform.GetComponent<BoxCollider2D>().isTrigger = false;
-            Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            gameObject.GetComponent<Animator>().SetTrigger("Explode");
             Destroy(gameObject, 0.4f);
             hit = true;
             theShip.ShipIsHit();
